@@ -1,0 +1,271 @@
+
+%% Produced by Scientific WorkPlace
+%% Version 2015091608
+%% Created Sun Oct 18 2015 21:02:14 GMT-0400 (Eastern Daylight Time)
+%% Last revised Mon Oct 19 2015 00:12:00 GMT-0400 (Eastern Daylight Time)
+
+\documentclass[10pt]{article}
+
+%% preamble
+
+\usepackage{amssymb,amsmath,xcolor,graphicx,xspace,colortbl, rotating} % ,revsymb4-1}
+\usepackage{amsfonts}  %% 010
+\usepackage{amsmath}  %% 010
+\usepackage{amssymb}  %% 100
+\usepackage{amssymb,amsmath,xcolor,graphicx,xspace,colortbl, rotating}  %% 100
+\usepackage{bm}  %% 100
+\usepackage{boxedminipage}  %% 100
+\usepackage{color}  %% 100
+\usepackage{geometry}  %% 100
+\usepackage{graphicx}  %% 100
+\usepackage{listings}  %% 100
+\usepackage{multirow}  %% 100
+\usepackage{pdflscape}  %% 100
+\usepackage{ragged2e}  %% 100
+\usepackage{rotating}  %% 100
+\usepackage{tabulary}  %% 100
+\usepackage{xcolor}  %% 200
+\usepackage{hyperref}  %% 10000
+\graphicspath{{Quiz3_E_graphics/}{Quiz3_E_tcache/}{Quiz3_E_gcache/}}
+\DeclareGraphicsExtensions{.pdf,.svg,.eps,.ps,.png,.jpg,.jpeg}
+\usepackage {bm}
+\usepackage {tabulary}
+\graphicspath {{Quiz2_E_graphics/}{Quiz2_E_tcache/}{Quiz2_E_gcache/}}
+\DeclareGraphicsExtensions {.pdf,.svg,.eps,.ps,.png,.jpg,.jpeg}
+\definecolor {dkgreen}{rgb}{0,0.6,0}
+\definecolor {gray}{rgb}{0.5,0.5,0.5}
+\definecolor {mauve}{rgb}{0.58,0,0.82}
+\lstset {frame=tb, language=C++, aboveskip=3mm, belowskip=3mm, showstringspaces=false, columns=flexible, basicstyle={\small \ttfamily }, numbers=none, numberstyle=\tiny \color {gray}, keywordstyle=\color {blue}, commentstyle=\color {dkgreen}, stringstyle=\color {mauve}, breaklines=true, breakatwhitespace=true, tabsize=3 }
+\setcounter {MaxMatrixCols}{10}
+\geometry {left=.8in,right=.8in,top=.8in,bottom=.8in}
+\setlength {\parskip }{3pt plus 1pt minus 1pt}
+\setlength {\parindent }{0pt}
+\newtheorem {theorem}{Theorem}
+\newtheorem {acknowledgement}[theorem]{Acknowledgement}
+\newtheorem {algorithm}[theorem]{Algorithm}
+\newtheorem {axiom}[theorem]{Axiom}
+\newtheorem {case}[theorem]{Case}
+\newtheorem {claim}[theorem]{Claim}
+\newtheorem {conclusion}[theorem]{Conclusion}
+\newtheorem {condition}[theorem]{Condition}
+\newtheorem {conjecture}[theorem]{Conjecture}
+\newtheorem {corollary}[theorem]{Corollary}
+\newtheorem {criterion}[theorem]{Criterion}
+\newtheorem {definition}[theorem]{Definition}
+\newtheorem {example}[theorem]{Example}
+\newtheorem {exercise}[theorem]{Exercise}
+\newtheorem {lemma}[theorem]{Lemma}
+\newtheorem {notation}[theorem]{Notation}
+\newtheorem {problem}[theorem]{Problem}
+\newtheorem {proposition}[theorem]{Proposition}
+\newtheorem {remark}[theorem]{Remark}
+\newtheorem {solution}[theorem]{Solution}
+\newtheorem {summary}[theorem]{Summary}
+\newenvironment {proof}[1][Proof]{\noindent \textbf {#1.} }{\ \rule {0.5em}{0.5em}}
+\begin{document}
+\title{Solutions to Qishi Quiz Two}
+\author{Si Chen, Yupeng Li, Jie Wang, Xian Xu and Yuanda Xu}
+\maketitle
+
+\section{Math/Stat}
+
+\subsection*{Problem 1~}
+A total combination:
+
+$N =7^{9}/P_{7}^{7} ,N1 =\binom{9}{1}$$ ,N2 =\binom{9}{2}\binom{7 -1}{2 -1}$, $N3 =\binom{9}{3}\binom{7 -1}{3 -1}$,
+
+$N4 =\binom{9}{4}\binom{7 -1}{4 -1} ,$ $N5 =\binom{9}{5}\binom{7 -1}{5 -1} ,$ $N6 =\binom{9}{6}\binom{7 -1}{6 -1} ,$ $N7 =\binom{9}{7}\binom{7 -1}{7 -1}$.
+
+Then, the expection of boy-girl:
+
+$(N1 \ast 1 +N2 \ast 2 +N3 \ast 3 + . . . +N7 \ast 7)/N$
+
+\subsection*{Problem 2~}
+Uncorrelated variable only mean $Cov(X ,Y) =(X -E(X))(Y -E(Y)) =0$, independent variables mean that~$P(XY) =P(X)P(Y)$, X,Y have no relation. So independent relation is stronger and can derive the uncorrelated relation, e.g. Y=X{\ensuremath{^{\textrm{2}}}}.
+
+\subsection*{Problem 3~}
+Dynamic Programing from the last roll:
+
+$E(3) =\frac{1}{6}(1 +2 +3 +4 +5 +6) =3.5 ,$
+
+$E(2) =\frac{1}{6}(3E(3) +4 +5 +6) =4.25 ,$
+
+$E(1) =\frac{1}{6}(4E(2) +5 +6) \approx 4.67 ,$\begin{equation*}\;
+\end{equation*}
+
+\subsection*{Problem 4 (Yupeng Li)}
+\qquad Assume random uniform distribution $U(0 ,L) ,X_{1} ,X_{2}...X_{n -1}$, and $X_{1} <X_{2} <... <X_{n -1}$ according to symmetry.
+
+$L_{1} =X_{1} ,L_{2} =X_{2} -X_{1} ,...L_{n =}1 -X_{n -1}$
+
+$P(L_{1} <l) =P(X_{1} <l) =l$
+
+$P(L_{2} <l) =P(X_{2} -X_{1} <l \mid X_{2} >X_{1}) =\frac{1/2 -(1 -l)^{2}/2}{1/2} =2l -l^{2}$
+
+$P(L_{i} <l) =2l -l^{2}$
+
+$P(L_{n} <l) =P(1 -X_{n -1} <l) =P(Xn-1 >1 -l) =1 -(1 -l) =l$
+
+$Y_{n} =P(L_{1}) \cdot  \cdot  \cdot P(L_{n}) =l^{n}(2 -l)^{n -2}$
+
+\subsection*{Problem 5~}
+Covariant Matrix and correlation matrix are semi-positive, so
+
+$\Sigma  = \mid \begin{array}{ccc}1 & r & 0 \\
+r & 1 & r \\
+0 & r & 1\end{array}$$ \mid  ,$ using Sylvester's criterion,~ $\mid \Sigma \mid  >0 ,$ $ \mid \begin{array}{cc}1 & r \\
+r & 1\end{array}$   $ \mid  >0$, we have $1 -r^{2} >0 , \Longrightarrow  -1 <r <1$~
+
+\subsection*{Problem 6~}
+
+\subsubsection*{(a)}
+It is a simple symmetric random walk, us the martingal: {\ensuremath{_{\textrm{}}}}$\;E(Sn)=0 ,E(S_{n}^{2} -N) =0$~
+
+$P( -1) \times  -1 +P(99) \times 99 =0 ,$ $P( -1) +P(99) =1 \Longrightarrow P( -1) =0.99 ,P(99) =0.01$
+
+$E(N) =E(S_{n}^{2}) =( -1)^{2}P( -1) +99^{2}P(99) =99$
+
+\subsubsection*{(2)}
+Use the mirror symmetry for the locked left door, the virtual left door should be in position -1-(99- -1)=-101, where the man reach right door after he reach left door. So:
+
+$P( -101) \times  -101 +P(99) \times 99 =0 ,$ $P( -101) +P(99) =1 \Longrightarrow P( -101) =0.495 ,P(99) =0.505$
+
+$E(N) =E(S_{n}^{2}) =( -101)^{2}P( -101) +99^{2}P(99) =9999$
+
+\subsection*{Problem 7~}
+Ridge Regression is defined mathematically:
+
+$\min (\sum (y_{i} -x_{i}^{T}\beta _{i})^{2} -\lambda \sum \beta _{i}^{2}) ,$ giving the large~$\beta _{i}$ ols~a square penalty term, to avoid large variation of the estimation~$\beta $, all parameters~$\beta $ will be shrined by some ratio according to~$\lambda $.
+
+\subsection*{Problem 8~}
+Ridge Regression is defined mathematically:
+
+$\min (\sum (y_{i} -x_{i}^{T}\beta _{i})^{2} -\lambda \sum  \mid \beta _{i} \mid ) ,$ giving the large~$\beta _{i}$ ols~a absolute penalty term, to avoid large variation of the estimation, some parameters~$\beta $ will be eliminated according to~$\lambda $.
+
+\subsection*{Problem 9}
+~$E(N) =\frac{1}{2}2^{1} +\frac{1}{2}2^{2} +\frac{1}{2}2^{3} +\frac{1}{2}2^{4} + \cdot  \cdot $$ +\frac{1}{2}2^{n} =2^{n} -1/2$
+
+\newpage
+
+\section{Programming}
+
+\subsection*{Problem 10~}
+In computer programming languages the term default constructor can refer to a constructor that is automatically generated by the compiler in the absence of any programmer-defined constructors (e.g. in Java), and is usually a nullary constructor. In other languages (e.g. in C++) it is a constructor that can be called without having to provide any arguments, irrespective of whether the constructor is auto-generated or user-defined. Note that a constructor with formal parameters can still be called without arguments if default arguments were provided in the constructor's definition. (Wiki)When you do not explicitly write a no-argument constructor for a class, but want the construction of the class has some other functions, you need define your own default constructor with the function inside, though no argument included.
+
+\subsection*{Problem 11~}
+
+package com.crunchify.tutorials;
+
+\qquad public class ThreadSafeSingleton \{
+
+~\qquad \qquad private static final Object instance = new Object();
+
+\qquad \qquad  protected ThreadSafeSingleton() \{\}// Runtime initialization // By defualt ThreadSafe
+
+\qquad
+\qquad \qquad  public static Object getInstance()\{
+
+\qquad \qquad \qquad return instance;
+
+\qquad \qquad \}
+
+\qquad \}
+
+Through this approach we provide the necessary thread-safety, as the Singleton instance is created at class-load time. Any subsequent calls to the getInstance() method will return the already created instance. Furthermore, the implementation is optimized as we've eliminated the need for checking the value of the Singleton instance, i.e. instance == null. \href{http://crunchify.com/thread-safe-and-a-fast-singleton-implementation-in-java/}
+{http://crunchify.com/thread-safe-and-a-fast-singleton-implementation-in-java/}
+
+\subsection*{Problem 12~}
+Use dynamic programming,
+
+local(k,i) have k transaction before i day and must sell at day i,
+
+global(k,i) have k transaction before i day and can hold or sell at day i
+
+~~ int maxProfit(int k, vector<int> \&prices) \{
+
+~~~~~~~ if (prices.empty())
+
+~~~~~~~~~~~ return 0;
+
+~~~~~~~ int ans = 0;
+
+~~~~~~~ if (k >= prices.size())
+
+\qquad \{
+
+~~~~~~~~~~~ for (int i = 1; i < prices.size(); ++i) \{
+
+~~~~~~~~~~~~~~~ if (prices[i] - prices[i - 1] > 0) \{
+
+~~~~~~~~~~~~~~~~~~~ ans += prices[i] - prices[i - 1];
+
+~~~~~~~~~~~~~~~ \}
+
+~~~~~~~~~~~ \}
+
+~~~~~~~ \} else \{
+
+~~~~~~~~~~~ vector<int> local(k+1);
+
+\qquad vector<int> global(k+1);
+
+~~~~~~~~~~~ for (int i = 0; i < prices.size() - 1; ++i) \{
+
+~~~~~~~~~~~~~~~ int increase = prices[i + 1] - prices[i];
+~~~
+~~~~~~~~~~~~~~~ for (int j = k; j >= 1; --j) \{
+
+~~~~~~~~~~~~~~~~~~~ local[j] = max(global[j - 1] + max(increase, 0), local[j] + increase);
+
+\qquad \qquad ~~~ global[j] = max(global[j], local[j]);
+
+~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~ \}
+
+~~~~~~~~~~~ \}
+
+~~~~~~~~~~~ ans = global[k];
+
+~~~~~~~ \}
+
+~~~~~~~ return ans;
+
+~~~ \}~
+
+\subsection*{Problem 13~}
+Use \symbol{94} to get the only number once:
+
+~~~ int singleNumber(vector<int> \&A) \{
+
+~~~~~~~ if (A.empty() or A.size() == 0) \{
+
+~~~~~~~~~~~ return 0;
+
+~~~~~~~ \}
+
+~~~~~~~ int rst = 0;
+
+~~~~~~~ for (int i = 0; i < A.size(); i++) \{
+
+~~~~~~~~~~~ rst \symbol{94}= A[i];
+
+~~~~~~~ \}
+
+~~~~~~~ return rst;
+
+~~~ \}
+
+\subsection*{Problem 14~}
+Yes. It's practically ok to do that. For example, the base class have one pure virtual function to generate the color of some clothes, and there is another function in the base class which generate the tab of the clothes, including the color also. In this case, the non-virtual tab function will need to call the virtual function of the color in the base class.
+
+\subsection*{Problem 15~}
+int x = rand() \% range + start; check the probability of each number in large sample, a good random generator should have equal probability.
+
+\subsection*{Problem 16~}
+\qquad Use the combination of coin toll to approximate the dice:
+
+$2^{n}$ to simulate~$6^{m} ,$ when $2^{n}>6m$ , the remainder of $2^{n} \%6$ will be abandoned, we can get $m =n\log _{3}2$, waste ratio: $r =1 -\frac{3^{m}}{2^{n}}$
+
+\subsection*{Problem 17
+}
+\end{document}

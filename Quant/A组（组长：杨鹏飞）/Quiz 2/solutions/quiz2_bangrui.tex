@@ -1,0 +1,233 @@
+\documentclass[11pt]{article}
+
+\usepackage[letterpaper,left=1.6in,right=1.6in,top=1.2in,bottom=1.2in]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\proof}{\bf Proof: \rm }%\nr}
+
+\setcounter{secnumdepth}{0}
+\usepackage{bbm}
+
+
+%\usepackage[vlined]{algorithm2e}
+\usepackage{algorithm,algorithmic}
+\usepackage[]{algorithm2e}
+\usepackage{paralist}
+\usepackage{tikz}
+\usepackage{xcolor,colortbl}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\begin{document}
+\setlength{\parindent}{0in}
+\addtolength{\parskip}{0.1cm}
+\setlength{\fboxrule}{.5mm}\setlength{\fboxsep}{1.2mm}
+\newlength{\boxlength}\setlength{\boxlength}{\textwidth}
+\addtolength{\boxlength}{-4mm}
+\begin{center}\framebox{\parbox{\boxlength}{{\bf
+QISHI QUIZ2 \hfill Due on 11:59PM OCT 12, 2015}\\
+% TODO: fill in your own name, netID, and collaborators
+Name: Bangrui Chen
+}}
+\end{center}
+\vspace{1mm}
+
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+backgroundcolor=\color{lbcolor},
+    tabsize=4,    
+%   rulecolor=,
+    language=[GNU]C++,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+        showstringspaces=false,
+        extendedchars=false,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        numbers=left,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.026,0.112,0.095},
+        stringstyle=\color[rgb]{0.627,0.126,0.941},
+        numberstyle=\color[rgb]{0.205, 0.142, 0.73},
+%        \lstdefinestyle{C++}{language=C++,style=numbers}’.
+}
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=4,
+  language=C++,
+  captionpos=b,
+  tabsize=3,
+  frame=lines,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  showstringspaces=false,
+  basicstyle=\footnotesize,
+%  identifierstyle=\color{magenta},
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color[rgb]{0,1,0},
+  stringstyle=\color{red}
+  }
+
+
+% TODO: write your solution here
+
+\section{Math}
+\subsection{Problem 5}
+Choose two random variables X and Y that uniformly lie in [0,1]. Let $A=\min(A,B)$ and $B=\max(A,B)$. Without loss of generality, we divide the stick into three pieces and let the length of the first piece be A, the second piece has length B-A and the third piece has length $1-B$. We first calculate the expected length for the smallest one. Suppose $S=\min(A,B-A,1-B)$, then the cdf of S is the following:
+\begin{align}
+F(a) &= 1 - P(A\geq a, B-A\geq a, 1-B\geq a) \nonumber \\
+&=1-P(x\geq a, y\geq x, y-x \geq a, 1- y\geq a) - P(y\geq a, x\geq y, x-y\geq a, 1-x\geq a) \nonumber \\
+&=1-2 P(x\geq a, y\geq x, y-x \geq a, 1- y\geq a) \nonumber \\
+&=1-2 * P(x\geq a, y\geq x+a, y\leq 1-a) \nonumber \\
+&=1-(1-3a)^{2}, \nonumber 
+\end{align}
+for $a\leq \frac{1}{3}$. Thus we know the pdf is 6(1-3a), 
+\begin{align}
+E[S]=\int_{0}^{\frac{1}{3}}6a(1-3a)da=\frac{1}{9}. \nonumber 
+\end{align}
+Similarly, if we denote the length of the largest one as $L=\max(A,B-A,1-B)$, then the cdf of L is the following:
+\begin{align}
+F(a) &= P(A\leq a, B-A\leq a, 1-B\leq a) \nonumber \\
+&=P(x\leq a, y\geq x, y-x \leq  a, 1- y\leq a) - P(y\leq a, x\geq y, x-y\leq a, 1-x\leq a) \nonumber \\
+&=2 P(x\leq a, y\geq x, y-x \leq a, 1- y\leq a) \nonumber \\
+&=2 * P(x\leq a, 1-a \leq y\leq a+x, y\geq x) \nonumber \\
+&=\begin{cases}
+    -3a^{2}+6a-2      & a\geq \frac{1}{2}\\
+    (3a-1)^{2}  & \frac{1}{3}\leq a\leq \frac{1}{2}\\
+  \end{cases}. \nonumber 
+\end{align}
+Thus, we know the pdf is
+\begin{align}
+f(a)&=\begin{cases}
+    6-6a      & a\geq \frac{1}{2}\\
+    6(3a-1)  & \frac{1}{3}\leq a\leq \frac{1}{2}\\
+  \end{cases}. \nonumber 
+\end{align}
+
+\begin{equation}
+E[L]=\int_{\frac{1}{3}}^{\frac{1}{2}}6a(3a-1)da + \int_{\frac{1}{2}}^{1}6a-6a^{2}da = \frac{1}{9}+\frac{1}{2}=\frac{11}{18}.\nonumber 
+\end{equation}
+Since the all three pieces sum up to 1, we know the expected length of the middle size one is $1-\frac{11}{18}-\frac{1}{9}=\frac{1}{3}$.
+
+
+
+
+If we divide the stick into n segments then the $k_{th}$ largest segment will have expected length $\frac{1}{n}(\frac{1}{n}+\cdots+\frac{1}{k})$\cite{os}\cite{stack}.
+
+\subsection{Problem 7}
+
+Based on Theorem 3.7 in \cite{es}, we know when a new variable is added to the original regression, the change in $R^{2}$ followed the following formula:
+\begin{equation}
+R_{1,2}^{2}=R_{1}^{2} + (1-R_{1}^{2})r^{2}, 
+\end{equation}
+where the explicit formula for $r^{2}$ can be found on page 44 in \cite{es}. Since$0\leq r^{2}\leq 1$, thus we know
+\begin{equation}
+0.2\leq R_{1,2}\leq 1.
+\end{equation}
+
+
+
+
+
+\section{Programming}
+\subsection{Problem 11}
+\begin{lstlisting}
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        while (node->next->next != NULL) {
+            node->val = node->next->val;
+            node = node->next;
+        }
+        node->val = node->next->val;
+        node->next = NULL;
+    }
+};
+
+\end{lstlisting}
+
+
+\subsection{Problem 17}
+\begin{lstlisting}
+class Solution {
+public:
+    int maxProfit(vector<int> &prices) {
+        if (prices.size() < 2) {
+            return 0;
+        }
+        vector<int> forward;
+        vector<int> backward;
+        forward.push_back(0);
+        backward.push_back(0);
+        
+        int valley = prices[0];
+        for (int i = 1; i < prices.size(); i++) {
+            forward.push_back(max(forward[forward.size() - 1], prices[i] - valley));
+            valley = min(valley, prices[i]);
+        }
+        
+        int top = prices[prices.size() - 1];
+        for (int i = prices.size() - 2; i >= 0; i--) {
+            backward.insert(backward.begin(), max(backward[0], top - prices[i]));
+            top = max(top, prices[i]);
+        }
+        
+        int profit = 0;
+        for (int i = 0; i < prices.size(); i++) {
+            profit = max(profit, forward[i] + backward[i]);
+        }
+        return profit;
+    }
+};
+\end{lstlisting}
+
+\begin{thebibliography}{9}
+
+\bibitem{es}
+H. G. William, \emph{\LaTeX: Econometric Analysis}, 7th Edition, 2010
+
+\bibitem{os}
+  H.A. David and H.N.Nagaraja
+  \emph{\LaTeX: Order Statistics},
+  Addison Wesley, Massachusetts,
+  3rd edition,
+  2003.
+\bibitem{stack} \url{http://math.stackexchange.com/questions/13959/if-a-1-meter-rope-is-cut-at-two-uniformly-randomly-chosen-points-what-is-the-av}
+
+\end{thebibliography}
+
+
+\end{document}

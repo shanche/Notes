@@ -1,0 +1,208 @@
+%  Typeset with LaTeX format
+
+\documentclass[a4paper, 11pt]{amsart}
+\usepackage{amsmath, amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage[arrow,matrix,curve,cmtip,ps]{xy}
+
+\usepackage{amsthm}
+
+%&biglatex
+%\documentclass[11pt]{article}
+
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{color}
+\usepackage{amsfonts}
+\usepackage{amscd}
+\usepackage{comment}
+\usepackage{epsfig}
+\usepackage{listings}
+%\usepackage[all]{xy}
+
+\usepackage[colorlinks=true, pdfstartview=FitV, linkcolor=red, citecolor=blue, urlcolor=green]{hyperref}
+\usepackage{tikz,etex,bbm,xspace,hyperref}
+\newcommand{\arxiv}[1]{\href{http://arxiv.org/abs/#1}{\tt arXiv:\nolinkurl{#1}}}
+
+
+%Invert commenting for showkeys:
+%\usepackage[notref]{showkey s}
+\addtolength{\hoffset}{-1.5cm}
+\addtolength{\textwidth}{3cm}
+\allowdisplaybreaks
+
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem*{theorem*}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}{Question}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem*{solution*}{Solution}
+
+
+
+%this has equations numbered within sections 1.1,1.2, ... 2.1,...
+\numberwithin{equation}{section}
+
+
+%-------------------------------------------
+%       Begin Local Macros
+%-------------------------------------------
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\ind}{\operatorname{ind}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand\mc[1]{\marginpar{\sloppy\protect\footnotesize #1}}
+\newcommand{\carl}{\operatorname{Carl}}
+\newcommand{\ci}[1]{_{ {}_{\scriptstyle #1}}}
+%\ci --- Capital index
+\newcommand{\ti}[1]{_{\scriptstyle \text{\rm #1}}}
+%\ti --text index
+\newcommand{\ut}[1]{^{\scriptstyle \text{\rm #1}}}
+%\ut -- upper text index
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\newcounter{vremennyj}
+\newcommand\cond[1]{\setcounter{vremennyj}{\theenumi}\setcounter{enumi}{#1}\labelenumi\setcounter{enumi}{\thevremennyj}}
+\renewcommand{\eqref}[1]{Equation (\ref{#1})}
+\newcommand{\argmax}{\arg\!\max}
+\newcommand{\argmin}{\arg\!\min}
+         
+%-------------------------------------------
+%       End Local Macros
+%-------------------------------------------
+
+
+
+
+
+\begin{document}
+\title[Quiz 2]{Quiz 2}
+
+\author{Jingguo Lai}
+\address{Department of Mathematics and Computer Science\\ Brown University \\ Providence, RI 02912}
+\email{jglai@math.brown.edu}
+\maketitle
+
+\section*{Question 2}
+Given a $2\times 3$ grid with 6 blocks and 17 edges\\
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) -- (0,4) -- (6, 4) -- (6,0) -- (0,0);
+\draw (0,2) -- (6,2); 
+\draw (2,0) -- (2,4); 
+\draw (4,0) -- (4,4);
+\draw (0,-0.3) node{I};
+\draw (2,-0.3) node{J};
+\draw (4,-0.3) node{L};
+\draw (6,-0.3) node{M};
+\draw (0,4.3) node{A};
+\draw (2,4.3) node{B};
+\draw (4,4.3) node{C};
+\draw (6,4.3) node{D};
+\draw (-0.2,1.7) node{E};
+\draw (1.8,1.7) node{F};
+\draw (3.8, 1.7) node{G};
+\draw (5.8,1.7) node{H};
+\end{tikzpicture}
+\end{center}
+Assuming edge length is 1, we want to find the shortest route to visit all edges. This is a variant of the famous \emph{Seven Bridges of K\"{o}nigsberg Problem}. In the original paper of Euler, he proved that
+\begin{theorem*}[Euler]
+\begin{enumerate}
+\item A finite graph $G$ contains an Euler circuit if and only if $G$ is connected and contains no vertices of odd degree.
+\item A finite graph $G$ contains an Euler path if and only if $G$ is connected and contains at most two vertices of odd degree.
+\end{enumerate}
+\end{theorem*}
+
+In this problem, we can see that nodes $B, C, E, H, J, L$ are vertices of odd degrees. So we need to connect nodes $B, C$ and nodes $J, L$ to guarentee the existence of an Euler path. Once we have these done, we know the shortest route to visit all edges should be with length $17+2 = 19$. A possible shortest route would be
+$$E-A-B-C-D-H-G-C-B-F-E-I-J-L-G-F-J-L-M-H$$
+
+\clearpage
+
+\section*{Question 6}
+\begin{enumerate}
+\item Let $Y$ be the number of people who select their own hats. To compute $\mathbb{E}[Y]$, we introduce i.i.d. random variables
+\[ Y_i = \left\{ \begin{array}{cc}
+1 & \textup{the i-th person select his own hat} \\
+0 & \textup{otherwise}
+\end{array} \right.\]
+So, we can compute
+\begin{align*}
+\mathbb{E}[Y] = \sum_{i = 1}^N\mathbb{E}[Y_i] = N\cdot \frac{1}{N} = 1.
+\end{align*}
+
+\item To compute $var(Y)$, again we have
+\begin{align*}
+var(Y) 
+&= var\left(\sum_{i = 1}^NY_i\right) = \sum_{i=1}^Nvar(Y_i) + \sum_{i\neq j}cov(Y_i, Y_j) \\
+& = N\cdot\frac{N-1}{N^2} + N(N-1)\cdot\frac{1}{N^2(N-1)} = 1.
+\end{align*}
+
+\item Let $R(N)$ be the number of rounds that are run.\\
+Let $S(N)$ be the total number of selections made by these $N$ individuals, \\
+Let $F(N)$ be the number of false selections made by these $N$ individuals.\\
+To make the calculation rigorously, we need the following facts
+\begin{align*}
+\sum_{n = 0}^N\mathbb{P}(Y = n) &= 1,\\
+\mathbb{E}[Y] = \sum_{n=0}^Nn\mathbb{P}(Y = n) &= 1,\\
+\mathbb{E}[Y^2] = \sum_{n=0}^Nn^2\mathbb{P}(Y=n) & = 2.
+\end{align*}
+
+\item Prove by induction that $\mathbb{E}[R(N)] = N$. Trivially, $\mathbb{E}[R(0)] = 0$.  Assume that $\mathbb{E}[R(n)] = n$ for all $0\leq n < N$, we have
+\begin{align*}
+\mathbb{E}[R(N)] 
+&= \sum_{n=0}^N\mathbb{E}[R(N)|Y = n]\mathbb{P}(Y=n) \\
+&= \sum_{n=0}^N\left(\mathbb{E}[R(N-n)] + 1\right)\mathbb{P}(Y=n)\\
+&= 1 + \mathbb{E}[R(N)]\mathbb{P}(Y=0) + \sum_{n=1}^N\left(N-n\right)\mathbb{P}(Y=n)\\
+&= 1 + \mathbb{E}[R(N)]\mathbb{P}(Y=0) + N\sum_{n=0}^N\mathbb{P}(Y=n)-N\mathbb{P}(Y=0)-\sum_{n=0}^Nn\mathbb{P}(Y=n)\\
+&= \mathbb{E}[R(N)]\mathbb{P}(Y=0) + N(1-\mathbb{P}(Y=0))
+\end{align*}
+Hence, using the fact that $\mathbb{P}(Y = 0) >0$, we can solve exactly $\mathbb{E}[R(N)] = N$.
+
+\item Prove by induction that $\mathbb{E}[S(N)] = (N+2)N/2$. Trivially, $\mathbb{E}[S(0)] = 0$.  Assume that $\mathbb{E}[S(n)] = (n+2)n/2$ for all $0\leq n < N$, we have
+\begin{align*}
+\mathbb{E}[S(N)] 
+&= \sum_{n=0}^N\mathbb{E}[S(N)|Y = n]\mathbb{P}(Y=n) = \sum_{n=0}^N\left(\mathbb{E}[S(N-n)] + N\right)\mathbb{P}(Y=n)\\
+&= N + \mathbb{E}[S(N)]\mathbb{P}(Y=0) + \sum_{n=0}^N\frac{(N-n+2)(N-n)}{2}\mathbb{P}(Y=n) - \frac{(N+2)N}{2}\mathbb{P}(Y = 0)\\
+&= N + \mathbb{E}[S(N)]\mathbb{P}(Y=0) + \frac{(N+2)N}{2}\sum_{n=0}^N\mathbb{P}(Y=n) - N\sum_{n=0}^Nn\mathbb{P}(Y=n)\\
+& + \frac{1}{2}\sum_{n=0}^Nn^2\mathbb{P}(Y=n) - \sum_{n=0}^Nn\mathbb{P}(Y=n) - \frac{(N+2)N}{2}\mathbb{P}(Y = 0)\\
+&= \mathbb{E}[S(N)]\mathbb{P}(Y=0) + \frac{(N+2)N}{2}(1-\mathbb{P}(Y=0))
+\end{align*}
+Hence, using the fact that $\mathbb{P}(Y = 0) >0$, we can solve exactly $\mathbb{E}[R(N)] = (N+2)N/2$.
+
+\item Again prove by induction that $\mathbb{E}[F(N)] = N^2/2$. Trivially, $\mathbb{E}[F(0)] = 0$.  Assume that $\mathbb{E}[F(n)] = n^2/2$ for all $0\leq n < N$, we have
+\begin{align*}
+\mathbb{E}[F(N)] 
+&= \sum_{n=0}^N\mathbb{E}[F(N)|Y = n]\mathbb{P}(Y=n) = \sum_{n=0}^N\left(\mathbb{E}[F(N-n)] + N-n\right)\mathbb{P}(Y=n)\\
+&= \mathbb{E}[F(N)]\mathbb{P}(Y = 0) + N\mathbb{P}(Y = 0) + \sum_{n = 0}^N\frac{(N-n+2)(N-n)}{2}\mathbb{P}(Y=n)\\ 
+& - \frac{(N + 2)N}{2}\mathbb{P}(Y=0)\\
+&= \mathbb{E}[F(N)]\mathbb{P}(Y = 0) + \frac{N^2}{2}(1-\mathbb{P}(Y=0))
+\end{align*}
+Hence, using the fact that $\mathbb{P}(Y = 0) >0$, we can solve exactly $\mathbb{E}[F(N)] = N^2/2$. In terms of the expected number of false selections made by 1 person, we have by symmetry the answer equals $N/2$.
+
+\end{enumerate}
+\clearpage
+
+
+
+\section*{Question 10}
+The code: 
+\begin{center}
+\textbf{const int *const fun(const int *const\& p) const;}
+\end{center} means that this is a const member function named fun that takes a reference to a const pointer to a const int and returns a const pointer to a const int.
+
+\end{document}

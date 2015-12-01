@@ -1,0 +1,96 @@
+\documentclass[10pt, onecolumn, draftcls]{IEEEtran}
+\usepackage{mathrsfs}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\PassOptionsToPackage{draft}{graphicx}
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{amssymb} 
+\usepackage{hyperref}
+\usepackage{cite} 
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{bbm}
+\usepackage{lipsum}
+\usepackage{stfloats}
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset { %
+    language=C++,
+    backgroundcolor=\color{black!5}, % set backgroundcolor
+    basicstyle=\footnotesize,% basic font setting
+}
+
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{rem}{Remark}
+\newtheorem{Def}{Definition}
+
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\essinf}{ess\,inf}
+
+\begin{document}
+\title{Solution 3}
+\author{Group A}
+\maketitle
+
+
+\begin{enumerate}
+\item Problem 9
+
+This is classic St. Petersberg Paradox, helpful link at:
+https://en.wikipedia.org/wiki/St._Petersburg_paradox
+http://plato.stanford.edu/entries/paradox-stpetersburg/
+
+\item Problem 11
+
+Problem only happens at instantiation of singleton
+
+#include <iostream>
+#include <thread>         
+#include <mutex>
+
+using namespace std;
+
+std::mutex mtx;
+
+class Singleton
+{
+private:
+    static bool instanceFlag;
+    static Singleton *single;
+    Singleton(){
+        //private constructor
+    }
+public:
+    static Singleton* getInstance();
+    void method();
+    ~Singleton(){
+        instanceFlag = false;
+    }
+};
+
+bool Singleton::instanceFlag = false;
+Singleton* Singleton::single = NULL;
+Singleton* Singleton::getInstance()
+{
+    if(! instanceFlag){
+        mtx.lock();
+        if(! instanceFlag){
+            single = new Singleton();
+            instanceFlag = true;
+        }
+        mtx.unlock();        
+    }
+    return single;
+}
+
+\begin{lstlisting}
+#Code Template
+\end{lstlisting}
+ 
+\end{enumerate}
+\end{document}

@@ -1,0 +1,56 @@
+Question 8
+If we only consider the asymptotic relative efficiency (ARE) between mean and median, we can use order statistics and the underlying distribution to get the variance of sample median and compare it to the variance of sample mean. Generally speaking, for long tail underlying distribution, median is more efficient than sample mean (sample median's var is asymptotically smaller than sample mean). Thus median is more robust.
+ 
+However, whether median is better depends on the length of the interval of interest. Short period trend(SPT) and long period trend(LPT) are different. The trade-off between these two is as follow: SPT should be more sensitive and should capture signal "outliers". SPT is vulnerable to error but it can detect the change faster; LPT should be more robust to outliers and reflect the overall trend during the time interval. 20 minutes may be regarded as a LPT, so we prefer median. Note that in some situations, 20 minutes might be considered as a SPT.
+
+
+Question 11:
+
+// SharedPtr.h
+<template T>
+
+class SharedPtr {
+public:
+  // constructor
+  SharedPtr(const T &obj):
+    p(new T(obj)), refCount(new std::size_t(1)) {}
+  // copy constructor
+  SharedPtr(const SharedPtr &p_):
+    p(p_), refCount(p_.refCount) { ++*refCount }
+  // copy assignment operator
+  SharedPtr& operator= (const SharedPtr&);
+  // Destructor
+  ~SharedPtr();
+private:
+  T *p;
+  std::size_t *refCount; // reference count
+}
+
+// Destructor definition
+SharedPtr::~SharedPtr() {
+  // decrement the current reference count
+  // if it is 0, free the allocated resource
+  // if not, do nothing
+  if(--*refCount == 0) {
+    delete p;
+    delete refCount;
+  }
+}
+
+// copy assignment operator definition
+SharedPtr& SharedPtr::operator=(const SharedPtr &rhs) {
+  // increment the rhs pointer's reference count
+  ++*rhs.refCount;
+  // decrement the lhs pointer's reference coount
+  // and check whether it is 0 or not
+  // if it is 0, free the allocated resource
+  if( --*refCount == 0) {
+    delete p;
+    delete refCount;
+  }
+  // copy rhs pointer and reference count to lhs
+  p = rhs.p;
+  refCount = rhs.refCount;
+  return *this;
+}
+

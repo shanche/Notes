@@ -1,0 +1,447 @@
+
+%% Produced by Scientific WorkPlace
+%% Version 2015091608
+%% Created Tue Oct 13 2015 22:27:21 GMT-0400 (Eastern Daylight Time)
+%% Last revised Tue Oct 13 2015 23:16:35 GMT-0400 (Eastern Daylight Time)
+
+\documentclass[10pt]{article}
+
+%% preamble
+
+\usepackage{amssymb,amsmath,xcolor,graphicx,xspace,colortbl, rotating} % ,revsymb4-1}
+\usepackage{amsfonts}  %% 010
+\usepackage{amsmath}  %% 010
+\usepackage{amssymb}  %% 100
+\usepackage{boxedminipage}  %% 100
+\usepackage{color}  %% 100
+\usepackage{geometry}  %% 100
+\usepackage{graphicx}  %% 100
+\usepackage{listings}  %% 100
+\usepackage{multirow}  %% 100
+\usepackage{pdflscape}  %% 100
+\usepackage{ragged2e}  %% 100
+\usepackage{rotating}  %% 100
+\usepackage{xcolor}  %% 200
+\usepackage{hyperref}  %% 10000
+\graphicspath{{Quiz2_E_graphics/}{Quiz2_E_tcache/}{Quiz2_E_gcache/}}
+\DeclareGraphicsExtensions{.pdf,.svg,.eps,.ps,.png,.jpg,.jpeg}
+\usepackage {bm}
+\usepackage {tabulary}
+\definecolor {dkgreen}{rgb}{0,0.6,0}
+\definecolor {gray}{rgb}{0.5,0.5,0.5}
+\definecolor {mauve}{rgb}{0.58,0,0.82}
+\lstset {frame=tb, language=C++, aboveskip=3mm, belowskip=3mm, showstringspaces=false, columns=flexible, basicstyle={\small \ttfamily }, numbers=none, numberstyle=\tiny \color {gray}, keywordstyle=\color {blue}, commentstyle=\color {dkgreen}, stringstyle=\color {mauve}, breaklines=true, breakatwhitespace=true, tabsize=3 }
+\setcounter {MaxMatrixCols}{10}
+\geometry {left=.8in,right=.8in,top=.8in,bottom=.8in}
+\setlength {\parskip }{3pt plus 1pt minus 1pt}
+\setlength {\parindent }{0pt}
+\newtheorem {theorem}{Theorem}
+\newtheorem {acknowledgement}[theorem]{Acknowledgement}
+\newtheorem {algorithm}[theorem]{Algorithm}
+\newtheorem {axiom}[theorem]{Axiom}
+\newtheorem {case}[theorem]{Case}
+\newtheorem {claim}[theorem]{Claim}
+\newtheorem {conclusion}[theorem]{Conclusion}
+\newtheorem {condition}[theorem]{Condition}
+\newtheorem {conjecture}[theorem]{Conjecture}
+\newtheorem {corollary}[theorem]{Corollary}
+\newtheorem {criterion}[theorem]{Criterion}
+\newtheorem {definition}[theorem]{Definition}
+\newtheorem {example}[theorem]{Example}
+\newtheorem {exercise}[theorem]{Exercise}
+\newtheorem {lemma}[theorem]{Lemma}
+\newtheorem {notation}[theorem]{Notation}
+\newtheorem {problem}[theorem]{Problem}
+\newtheorem {proposition}[theorem]{Proposition}
+\newtheorem {remark}[theorem]{Remark}
+\newtheorem {solution}[theorem]{Solution}
+\newtheorem {summary}[theorem]{Summary}
+\newenvironment {proof}[1][Proof]{\noindent \textbf {#1.} }{\ \rule {0.5em}{0.5em}}
+\begin{document}
+\title{Solutions to Qishi Quiz Two}
+\author{Si Chen, Yupeng Li, Jie Wang, Xian Xu and Yuanda Xu}
+\maketitle
+
+\section{Math/Stat}
+
+\subsection*{Problem 1 (Yupeng Li)}
+A $\chi ^{2}$ test (or chi-square test), is to test whether the sampling distribution is a chi-square distribution with the null hypothesis is true.
+A chi-squared test can then be used to reject the hypothesis that the data are independent.
+
+The chi-squared distribution (also chi-square
+or $\chi ^{2}$-distribution) with k degrees of freedom is the distribution of a sum of the squares of k independent standard normal random variables
+$Z$. $Q =\sum _{i}Z_{i}^{2}$.
+
+Due to the central limit theorem, the sum or average of random variables are iid and normally distributed, which
+is often used as the test samples, and makes the chi-squared test valid in many cases.
+
+\subsection*{Problem 2 (Jie Wang)}
+Recall a well known fact that one can visit each edge of a (connected) graph $G$ \textbf{exactly once} if and only if the number of vertices of odd degree is either $0$ or $2$ (the degree of a vertex $v$ of $G$ is the number of edges passing through that vertex in question). Our graph $G$ in question has $6$ vertices of degree $3$, namely $T_{1}$, $T_{2}$ on the top side, $B_{1}$, $B_{2}$ one the bottom side, $L$ on the left side and $R$ on the right side. Thus there is no way to find a path to visit all edges exactly once. However, if we make two auxiliary edges
+connecting $T_{1}$, $T_{2}$ and $B_{1}$, $B_{2}$, then there are only two vertices of degree $3$ left, namely $L$ and $R$. One can find a path to visiting each edge of the new graph $G \prime $ exactly once. This path has length 19 since the new graph has $19$ edges. This means on the original graph $G$, there exists a path of length $19$ to visit all edges (the path will visit edges $T_{1} T_{2}$ and $B_{1} B_{2}$ twice and all other edges once). It is easy to show this is the shortest path possible.
+
+\subsection*{Problem 3 (Si Chen)}
+It follows that
+\begin{eqnarray*}\;\text{Pr}\;(X \leq x\vert X +Y >0) &  = & 2 \ast \;\text{Pr}\;(X \leq x ,X +Y >0) \\
+&  = & 2 \ast \int _{ -\infty }^{x}\;\text{Pr}\;(X +Y >0\vert X =z)\phi  (z)  dz \\
+&  = & 2 \ast \int _{ -\infty }^{x}\Phi  (z) \phi  (z)  dz\text{.}\end{eqnarray*}
+
+Therefore the density of $X\vert X +Y >0$ is 
+\begin{equation*}2 \Phi  (x) \phi  (x) =\frac{1}{\pi } e^{ -\frac{x^{2}}{2}} \int _{ -\infty }^{x}e^{ -\frac{y^{2}}{2}}  dy\text{.}
+\end{equation*}
+
+\subsection*{Problem 4 (Yupeng Li)}
+\qquad 4.1) E(N35) = 1/6 * (36*0 + 37 + 38 + 39 + 40 + 41) = 32.5$ >$ 35, so stop rolling and take the 35\$ reward when you get 35 position
+
+4.2) P(44) = 1/6 * (P(43)+P(42)+...+P(38))
+
+\qquad P(45) = 1/6 * (P(43)+P(42)+..+P(39))
+
+\qquad P(46) = 1/6 * (P(43)+P(42)+..+P(40))
+
+\qquad P(47) = 1/6 * (P(43)+P(42)+P(41))
+
+\qquad P(48) = 1/6 * (P(43)+P(42))
+
+\qquad P(49) = 1/6* P(43)
+
+\qquad Since P(49), P(36) will result in 0\$, so P(0) = P(49)+P(36) = 1/6*P(43)+1/6$ >$ P(44)$ >$P(43)$ >$...$ >$P(48)
+
+\qquad So, the most probably number is 0\$, if we keep rolling after 35\$.
+
+4.3) Assume strategy is keep rolling until the sum large than n, we can test n = 43,
+
+\qquad E(N43) =  1/6 * (44 + 45 + 46 + 47 + 48 + 49 *0) = 38.3
+
+\qquad E(N42) =  1/6 * (E(N43) + 44 + 45 + 46 + 47 + 48) = 44.7
+
+\qquad E(N41) =  1/6 * (E(N42) + E(N43) + 44 + 45 + 46 + 47) = 44.2
+
+\qquad E(N40) =  43.7, E(N39) =  43.3, E(N38) =  43.0, E(N37) =  42.9
+
+\qquad E(N35) = 1/6 * (36*0 + E(N37)+E(N38)+E(N39)+E(N40)+E(N41)) = 36.18 > 35, so we should keep rolling.
+
+\qquad In this way, we can have E(n+1) \symbol{126} E(n+6) first, use dynamic programing, we can choose the max between current value n and the 1/6 * (E(n+1) \symbol{126} E(n+6)), \qquad \qquad then compute out the E(n), E(n-1), E(n-2)... until E(0), note that when i is square number, E(i) = 0. By this method, we can exhaustion to find the maxium \qquad \qquad E(0)= 7.1754, when n = 74.
+
+import numpy, math
+
+for n in range(200,1,-1):
+~~~ s = numpy.ones(n+7)
+
+~~~ for i in range(n+1,n+7):
+
+~~~~ s[i] = i if int(math.sqrt(i))**2 != i else~ 0
+
+~~~ for i in range(n,0,-1):
+
+\qquad if int(math.sqrt(i)) ** 2 == i:
+
+~~ ~~~~~~~ s[i] = 0
+
+~~ ~~~~ else:
+
+~ ~~~~~~~~ s[i] = max(numpy.sum(s[i+1:i+7])/6, i)
+
+~ ~ s[0] = numpy.sum(s[1:7])/6
+
+~ ~ print n, s[0]
+
+\subsection*{Problem 5 (Jie Wang)}
+Let $X$ and $Y$ be the random variable representing two of pieces, the thrid piece has length $1 -X -Y$. Thus $X$ and $Y$ are i.i.d with $\mathcal{U} (0 ,1)$ distribution. We compute the c.d.f $F_{\max }$ of $\max X ,Y ,1 -X -Y$ as follows: 
+\begin{equation*}
+\end{equation*}  We easily compute that \begin{equation*}F_{\max } (t) =\{\begin{array}{ll}\, & a m p ;t
+%TCIMACRO{\TeXButton{\le }{\le }}%
+%BeginExpansion
+\le
+%EndExpansion
+\frac{1}{3}\text{,} \\
+(3 t -1)^{2} \frac{1}{3} <t
+%TCIMACRO{\TeXButton{\le }{\le }}%
+%BeginExpansion
+\le
+%EndExpansion
+\frac{1}{2}\text{,} & \, \\
+1 -3 (1 -t)^{2} \frac{1}{2} <t
+%TCIMACRO{\TeXButton{\le }{\le }}%
+%BeginExpansion
+\le
+%EndExpansion
+1. & \,\end{array}
+\end{equation*} We further compute the density function and then the expectation \begin{equation*}\mathbb{E}_{\max } =\frac{11}{18}\text{.}
+\end{equation*} One can similarly compute the c.m.f of $\min \{X ,Y ,1 -X -Y\}$: \begin{equation*}F_{\min } (t) =\{\begin{array}{ll} -(1 -3 t)^{2} 0
+%TCIMACRO{\TeXButton{\le }{\le }}%
+%BeginExpansion
+\le
+%EndExpansion
+t
+%TCIMACRO{\TeXButton{\le }{\le }}%
+%BeginExpansion
+\le
+%EndExpansion
+\frac{1}{3} & \, \\
+1 t >\frac{1}{3}\text{.} & \,\end{array}
+\end{equation*} The expectation is $\mathbb{E}_{\min } =\frac{1}{9}$. The middle piece therefore has expectation $\frac{5}{18}$.
+
+\subsection*{Problem 6 (Xian Xu)}
+
+\subsubsection*{(1)}
+Let $X_{i}$ denote an indicator variable which is equal to 1 if the $i t h$ person picks his/her own hat. Clearly, 
+\begin{equation*}\;\text{E}\;(X_{i}) =\;\text{Pr}\;(X_{i} =1) =\frac{(N -1) !}{N !} =\frac{1}{N}\text{.}
+\end{equation*}
+
+Therefore 
+\begin{equation*}\;\text{E}\;(Y) =\sum _{i =1}^{N}\;\text{E}\;(X_{i}) =N \ast \frac{1}{N} =1.
+\end{equation*}
+
+\subsubsection*{(2)}
+For person $i$ and $j$, the covariance between $X_{i}$ and $X_{j}$ is
+\begin{eqnarray*}\;\text{Cov}\;(X_{i} ,X_{j}) &  = & \;\text{E}\;(X_{i} X_{j}) -\;\text{E}\;(X_{i})\;\text{E}\;(X_{j}) \\
+&  = & \;\text{Pr}\;(X_{i} =1 ,X_{j} =1) -\frac{1}{N^{2}} \\
+&  = & \frac{(N -2) !}{N !} -\frac{1}{N^{2}} \\
+&  = & \frac{1}{N^{2} (N -1)}\text{.}\end{eqnarray*}
+
+Therefore 
+\begin{equation*}\;\text{Var}\;(Y) =\sum _{i =1}^{N}\;\text{Var}\;(X_{i}) +2\sum _{1 \leq i <j \leq N}\;\text{Cov}\;(X_{i} ,X_{j}) =N \ast \left (\frac{1}{N} -\frac{1}{N^{2}}\right ) +N (N -1) \ast \frac{1}{N^{2} (N -1)} =1.
+\end{equation*}
+
+\subsubsection*{(3)}
+Start from simple cases: $\;\text{E}\;[R(2)] =2$; $\;\text{E}\;[R(3)] =1 +\frac{1}{3}\;\text{E}\;[R(3)] +\frac{1}{2}\;\text{E}\;[R(2)]$ ,which gives us $\;\text{E}\;[R(3)] =3$. Therefore my educated guess for the general case would be $\;\text{E}\;[R(N)] =N$, and I'll prove that by induction.
+
+Suppose the conclusion holds for all $n <N$. When $n =N$, let's continue to use $Y$ as the number of people who select their own hats at the first round. Then it follows from the conditional-expectation formula
+that
+\begin{eqnarray*}\;\text{E}\;[R(N)] &  = & \sum _{k =0}^{N}\;\text{E}\;[R(N)\vert Y =k]\;\text{Pr}\;(Y =k) \\
+&  = & 1 +\;\text{Pr}\;(Y =0) \ast \;\text{E}\;[R(N)] +\sum _{k =1}^{N}\;\text{E}\;[R(N -k)]\;\text{Pr}\;(Y =k) \\
+&  = & 1 +\;\text{Pr}\;(Y =0) \ast \;\text{E}\;[R(N)] +\sum _{k =1}^{N}(N -k)\;\text{Pr}\;(Y =k) \\
+&  = & 1 +\;\text{Pr}\;(Y =0) \ast \;\text{E}\;[R(N)] +[1 -\;\text{Pr}\;(Y =0) ] \ast N -\sum _{k =0}^{N}k\;\text{Pr}\;(Y =k) \\
+&  = & 1 +\;\text{Pr}\;(Y =0) \ast \;\text{E}\;[R(N)] +[1 -\;\text{Pr}\;(Y =0) ] \ast N -\;\text{E}\;(Y) \\
+&  = & \;\text{Pr}\;(Y =0) \ast \;\text{E}\;[R(N)] +[1 -\;\text{Pr}\;(Y =0) ] \ast N\text{,}\end{eqnarray*}  where the last equality follows from part (1). Now it is super clear that $\;\text{E}\;[R(N)] =N$. QED.
+
+\subsubsection*{(4)}
+Again let's start from simple cases: $\;\text{E}\;[S(2)] =4 =\frac{1}{2} \ast 2 \ast (2 +2)$; $\;\text{E}\;[S(3)] =3 +\frac{1}{3}\;\text{E}\;[S(3)] +\frac{1}{2}\;\text{E}\;[S(2)] =\frac{10}{3} =\frac{1}{2} \ast 3 \ast (3 +2)$. Therefore my educated guess for the general case would be $\;\text{E}\;[S(N)] =\frac{1}{2} N (N +2)$, and I'll still prove that by induction.
+
+Suppose the conclusion holds for all $n <N$. When $n =N$, it follows from the conditional-expectation formula that
+\begin{eqnarray*}\;\text{E}\;[S(N)] &  = & \sum _{k =0}^{N}\;\text{E}\;[S(N)\vert Y =k]\;\text{Pr}\;(Y =k) \\
+&  = & N +\;\text{Pr}\;(Y =0) \ast \;\text{E}\;[S(N)] +\sum _{k =1}^{N}\;\text{E}\;[S(N -k)]\;\text{Pr}\;(Y =k) \\
+&  = & N +\;\text{Pr}\;(Y =0) \ast \;\text{E}\;[S(N)] +\sum _{k =1}^{N}\frac{1}{2} (N -k) (N -k +2)\;\text{Pr}\;(Y =k) \\
+&  = & N +\;\text{Pr}\;(Y =0) \ast \;\text{E}\;[S(N)] +[1 -\;\text{Pr}\;(Y =0) ] \ast \frac{1}{2} N (N +2) -(N +1) \ast \;\text{E}\;(Y) +\frac{1}{2} \ast \;\text{Var}\;(Y) \\
+&  = & \;\text{Pr}\;(Y =0) \ast \;\text{E}\;[S(N)] +[1 -\;\text{Pr}\;(Y =0) ] \ast \frac{1}{2} N (N +2)\text{,}\end{eqnarray*}  where the last equality follows from part (1) and (2). Now it is super clear that $\;\text{E}\;[S(N)] =\frac{1}{2} N (N +2)$. QED.
+
+\subsubsection*{(5)}
+The expected number of false selections made by one of the $N$ people is equal to 
+\begin{equation*}\frac{\;\text{E}\;[S(N)] -N}{N} =\frac{1}{2} N\text{.}
+\end{equation*}
+
+\subsection*{Problem 7 (Si Chen)}
+Introducing a new feature into linear regression will not decrease the $R^{2}$ value, so the $R^{2}$ of model 3 should not be smaller than 0.2. If $X_{1}$ and $X_{2}$ are totally uncorrelated, $R^{2}$ will be 0.3. The range should be [0.2,0.3]
+
+\subsection*{Problem 8 (Xian Xu)}
+This solution is motivated by
+%TCIMACRO{\TeXButton{url}{\url{http://jeremykun.com/2014/02/12/simulating-a-biased-coin-with-a-fair-coin/}}}%
+%BeginExpansion
+\url{http://jeremykun.com/2014/02/12/simulating-a-biased-coin-with-a-fair-coin/}
+%EndExpansion
+.
+The Python code is presented as follows: 
+\begin{lstlisting} def biasedCoin(binaryDigitStream, fairCoin): for d in binaryDigitStream: if fairCoin() != d: return d  def binaryDigitsStream(fraction):
+while True: fraction *= 2 yield int(fraction) fraction = fraction
+
+def fairCoin(): return random.choice([0,1]) \end{lstlisting}
+
+The main function biasedCoin() takes two arguments: one is binaryDigitsStream(), an iterator representing the binary expansion of
+probability $\frac{1}{n}$; the other is fairCoin(), which returns 1 or 0 with equal probability.
+
+The biasedCoin() function returns 1(heads)
+with probability $\frac{1}{n}$, and the reasoning is as follows: we use fairCoin() to generate a series of random bits, until one of our random bits is different
+from the corresponding bit in the binary expansion of $\frac{1}{n}$. If we stop after $i$ steps, that means that the first $i -1$ bits in the two binary sequences were the same, which happens with probability $\frac{1}{2^{i -1}}$. Given that this happens, in the $i$th step we will return the $i$th bit of $\frac{1}{n}$; let us denote this bit by $b_{i}$. Therefore the probability of returning 1 is $\sum _{i =1}^{\infty }\frac{b_{i}}{2^{i}}$, which is the binary expansion of $\frac{1}{n}$.
+
+\subsection*{Problem 9 (Yuanda Xu)}
+\newpage
+
+\section{Programming}
+
+\subsection*{Problem 10 (Yupeng Li)}
+This is about the const in variable, function and class members.
+
+The first const int *: the fun return type is a pointer
+of int type and the returned int value is constant.
+
+The second const fun(): returned pointer of fun is constant, meaning the value
+of pointer cann't be changed.
+
+The third const int*: like the first, argument is a pointer to int type and the value of int is constant.
+
+The forth const\& p: p is a pointer with same reference as the passed variable and it's value cann't be change.
+
+The fifth
+const: the fun member in the class is a constantt member function, saying it cann''t change any class member in the fun function and the object which use
+this fun function will be required as constant object too.
+
+\subsection*{Problem 11 (Si Chen)}
+Idea comes from
+%TCIMACRO{\TeXButton{url}{\url{http://www.algolist.net/Data_structures/Singly-linked_list/Removal}}}%
+%BeginExpansion
+\url{http://www.algolist.net/Data_structures/Singly-linked_list/Removal}
+%EndExpansion
+.
+There are three cases, which can occur while removing the node: 
+
+\begin{itemize}
+\item [a.] Remove first. It can be done in two steps: 
+
+\begin{itemize}
+\item Update head link to point to the node, next to the head.
+
+\item Dispose
+removed node. \end{itemize}
+
+\item [b.] Remove last.
+In this case, last node (current tail node) is removed from the list. This operation is a bit more tricky, than removing the first node, because algorithm
+should find a node, which is previous to the tail first. It can be done in three steps: 
+
+\begin{itemize}
+\item Update tail link to point to the node, before the tail. In order to find it, list should be traversed first, beginning
+from the head.
+
+\item Set next link of the new tail to NULL.
+
+\item Dispose
+removed node. \end{itemize}
+
+\item [c.] General case.
+
+\begin{itemize}
+\item Update next link of the previous node, to point to the next node, relative to the removed node.
+
+\item Dispose
+removed node. \end{itemize}
+\end{itemize}
+
+The C++ code is as follows: 
+\begin{lstlisting} void SinglyLinkedList::removeFirst()  if (head == NULL) return; else  SinglyLinkedListNode *removedNode; removedNode = head;
+if (head == tail)  head = NULL; tail = NULL;  else  head = head->next;  delete removedNode;    void SinglyLinkedList::removeLast()  if (tail ==
+NULL) return; else  SinglyLinkedListNode *removedNode; removedNode = tail; if (head == tail)  head = NULL; tail = NULL;  else  SinglyLinkedListNode *previousToTail
+= head; while (previousToTail->next != tail) previousToTail = previousToTail->next; tail = previousToTail; tail->next = NULL;  delete removedNode;
+
+void SinglyLinkedList::removeNext(SinglyLinkedListNode *previous)  if (previous == NULL) removeFirst(); else if (previous->next == tail)  SinglyLinkedListNode
+*removedNode = previous->next; tail = previous; tail->next = NULL; delete removedNode;  else if (previous == tail) return; else  SinglyLinkedListNode *removedNode
+= previous->next; previous->next = removedNode->next; delete removedNode;   \end{lstlisting}
+
+\subsection*{Problem 12 (Jie Wang)}
+\begin{lstlisting}\# include <iostream> \#include<vector> using namespace std;
+
+template<typename T>
+
+class Matrix  public: Matrix(int A, int B, T t):RowNumber(A),ColNumber(B) //constructor innitialize A*B matrix with entries t.  MyMatrix.resize(A);
+for(int i=0;i<A;i++) MyMatrix[i].resize(B,t);
+
+Matrix(const Matrix\&OneMatrix):RowNumber(OneMatrix.RowNumber),ColNumber(OneMatrix.ColNumber)
+//copy constructor  MyMatrix.resize(RowNumber); for(int i=0;i<RowNumber;i++) MyMatrix[i].resize(ColNumber); for(int i;i<RowNumber;i++) for(int j=0;j<ColNumber;j++)
+MyMatrix[i][j]=OneMatrix.MyMatrix[i][j];   Matrix\&operator=(const Matrix\&OneMatrix) //overloading assignment operator  if(RowNumber!=OneMatrix.RowNumber||ColNumber!=OneMatrix.ColNumber)
+cout<<"The matrices do not match."<<endl; throw -1;  for(int i=0;i<RowNumber;i++) for(int j=0;j<ColNumber;j++) MyMatrix[i][j]=OneMatrix.MyMatrix[i][j];
+return *this;
+
+Matrix operator+(const Matrix\&AnotherMatrix) //overloading +  if(RowNumber!=AnotherMatrix.RowNumber||ColNumber!=AnotherMatrix.ColNumber)
+cout<<"The matrices do not match."<<endl; throw -1 ;  else Matrix A(RowNumber,ColNumber,0); for(int i=0;i<RowNumber;i++) for(int j=0;j<ColNumber;j++)
+A.MyMatrix[i][j]=MyMatrix[i][j]+AnotherMatrix.MyMatrix[i][j]; return A;
+
+Matrix operator-(const Matrix\&AnotherMatrix) //overloading
+-  if(RowNumber!=AnotherMatrix.RowNumber||ColNumber!=AnotherMatrix.ColNumber) cout<<"The matrices do not match."<<endl; throw -1 ;  else Matrix
+A(RowNumber,ColNumber,0); for(int i=0;i<RowNumber;i++)  for(int j=0;j<ColNumber;j++) A.MyMatrix[i][j]=MyMatrix[i][j]-AnotherMatrix.MyMatrix[i][j];
+ return A;
+
+Matrix operator*(const Matrix\&AnotherMatrix) //overloading matrix multiplication  if(ColNumber!=AnotherMatrix.RowNumber) throw
+"The matrices can not be multiplied";  Matrix A(RowNumber,AnotherMatrix.ColNumber,0); for(int i=0;i<RowNumber;i++) for(int j=0;j<AnotherMatrix.ColNumber;j++)
+ for(int k=0;k<ColNumber;k++) A.MyMatrix[i][j]+=MyMatrix[i][k]*AnotherMatrix.MyMatrix[k][j];  return A;   T\&operator()(int A, int B)  if(A>=RowNumber||B>=ColNumber||A<0||B<0)
+
+throw "Position not available";
+
+return MyMatrix[A][B];
+
+void print()  for(int i=0;i<RowNumber;i++)
+ cout<<"
+%TCIMACRO{\TeXButton{n}{\n}}%
+%BeginExpansion
+\n
+%EndExpansion
+"; for(int j=0;j<ColNumber;j++) cout<<MyMatrix[i][j]<<'oo;
+cout<<'
+%TCIMACRO{\TeXButton{n}{\n}}%
+%BeginExpansion
+\n
+%EndExpansion
+';  private: int RowNumber; int ColNumber; vector<vector<T>>
+MyMatrix; ; \end{lstlisting}
+
+\subsection*{Problem 13 (Xian Xu)}
+The answer to first part is NO. When calling a constructor, the caller needs to know the exact type of the object to be created, and thus they
+cannot be virtual.
+
+That being said, it is still possible to realize a similar function as a virtual constructor. See the following
+two URLs for implementation details: 
+
+\begin{itemize}
+\item
+%TCIMACRO{\TeXButton{url}{\url{http://www.geeksforgeeks.org/advanced-c-virtual-constructor/}}}%
+%BeginExpansion
+\url{http://www.geeksforgeeks.org/advanced-c-virtual-constructor/}
+%EndExpansion
+
+\item
+%TCIMACRO{\TeXButton{url}{\url{http://www.geeksforgeeks.org/advanced-c-virtual-copy-constructor/}}}%
+%BeginExpansion
+\url{http://www.geeksforgeeks.org/advanced-c-virtual-copy-constructor/}
+%EndExpansion
+\end{itemize}
+
+\subsection*{Problem 14 (Yuanda Xu)}
+,\ref{if we were guaranteed no derived class wanted a different function}
+
+\subsection*{Problem 15 (Yupeng Li)}
+\begin{lstlisting}string getmaxPalindrome(string s)\{
+
+bool isPalindrome[s.size()][s.size()];
+
+int maxlen = 0,
+maxst=0;
+
+for (int i = 0; i < s.size(); i++)  isPalindrome[i][i] = true;
+
+for (int i = 0; i < s.size() - 1; i++)  isPalindrome[i][i + 1] = (s[i] ==
+s[i + 1]);
+
+if (isPalindrome[i][i+1]) maxlen = 1;maxst=i;
+
+for (int length = 2; length < s.size(); length++)\{
+
+for (int start = 0;
+start + length < s.size(); start++)\{
+
+isPalindrome[start][start + length] = isPalindrome[start + 1][start + length - 1] \&\&s[start] == s[start
++ length];
+
+if (isPalindrome[start][start+length]\&\&(length > maxlen))
+
+\}
+
+\}
+
+maxlen = length; maxst = start;
+
+return s.substr(maxst, maxlen+1);
+
+\}
+
+\end{lstlisting}
+
+\subsection*{Problem 16 (Xian Xu)}
+Assume there are no leading or trailing spaces in the input sentence, and the words are always separated by a single space. The idea is to first
+reverse each word and then reverse the whole string. Here is a C++ implementation: 
+\begin{lstlisting} void reverseWords(string\&s)  string::iterator begin = s.begin(); string::iterator end = s.begin();  // First
+reverse each word while (end != s.end())  if (*end == ' ')  reverse(begin,end); begin = end + 1;  end++;  reverse(begin,end);
+
+// Then
+reverse the whole string reverse(s.begin(),s.end());  \end{lstlisting}
+
+\subsection*{Problem 17 (Yuanda Xu)}
+
+\subsection*{Problem 18}
+\end{document}

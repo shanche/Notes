@@ -1,0 +1,550 @@
+%
+\documentclass[12pt]{amsart}
+%\usepackage{txfonts}      %{article} was 12pt latex e
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage[dvips]{color}
+\usepackage{multicol}
+\usepackage[all]{xy}           %xypic macro for latex2.09
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{colordvi}
+\usepackage{xspace}
+\usepackage{listings}
+\usepackage{framed}
+\usepackage{lipsum}
+%\usepackage{axodraw}
+\usepackage{hyperref}
+
+\usepackage[active]{srcltx} %SRC Specials for DVI Searching
+
+
+\renewcommand\baselinestretch{1}    %was    1, 1.5 for double sp
+
+%%standard setting
+%\topmargin -0.3truein \textheight 8.4truein \oddsidemargin 0.2truein
+%\evensidemargin 0.2truein \textwidth 440pt
+%=========================================================================================
+%%little larger standard setting: good setting
+\topmargin -.8cm \textheight 22.8cm \oddsidemargin 0cm
+\evensidemargin -0cm \textwidth 16.3cm
+%==================================================================================
+%% facing large setting
+%\topmargin -.8cm \textheight 22.8cm \oddsidemargin -2cm
+%\evensidemargin 2cm \textwidth 15cm
+%==================================================================================
+%%wide %% small font, fit window
+%\topmargin -3.3cm \textheight 27.5cm \oddsidemargin -2cm
+%\evensidemargin -2cm \textwidth 20cm
+%%%%%%%%%%%%%%%================================================
+%note setting, fit window
+%%wide note setting, fit window
+%\topmargin -1.6cm \textheight 23cm \oddsidemargin -0.9cm
+%\textwidth 33cm \evensidemargin -0.9cm
+%==================================================================================
+%%wide note setting, no margin
+%\topmargin -1.6cm \textheight 14.25cm \oddsidemargin -2cm
+%\textwidth 20cm \evensidemargin -1.9cm
+%=================================================================================%
+%print narrow note setting
+%\topmargin -0.5truein \textheight 9.8truein \oddsidemargin -0.7truein \evensidemargin -0.7truein \textwidth 340pt
+%=================================================================================
+%\makeatletter
+
+%\makeatletter
+
+\begin{document}  %for latex 2.09
+%\input amssym.def %
+%\input amssym      %
+
+\newcommand{\nc}{\newcommand}
+\newcommand{\delete}[1]{}
+\nc{\dfootnote}[1]{{}}          %{{}}
+\nc{\ffootnote}[1]{\dfootnote{#1}}
+%\nc{\mfootnote}[1]{{}}        % Use this to suppress footnotes
+\nc{\mfootnote}[1]{\footnote{#1}} % Use this to show footnotes
+\nc{\todo}[1]{\tred{To do:} #1}
+
+%\delete{
+\nc{\mlabel}[1]{\label{#1}}  % Use this to suppress names
+\nc{\mcite}[1]{\cite{#1}}  % Use this to suppress names
+\nc{\mref}[1]{\ref{#1}}  % Use this to suppress names
+\nc{\mbibitem}[1]{\bibitem{#1}} % Use this to show number
+%}
+
+
+\delete{
+\nc{\mlabel}[1]{\label{#1}  % Use the next two lines to show names
+{\hfill \hspace{1cm}{\bf{{\ }\hfill(#1)}}}}
+\nc{\mcite}[1]{\cite{#1}{{\bf{{\ }(#1)}}}}  % Use this lines to show names
+\nc{\mref}[1]{\ref{#1}{{\bf{{\ }(#1)}}}}  % Use this lines to show names
+\nc{\mbibitem}[1]{\bibitem[\bf #1]{#1}} % Use this to show name
+}
+
+\nc{\mkeep}[1]{\marginpar{{\bf #1}}} % Use this to show marginpar
+%\nc{\mkeep}[1]{{}}      % Use this to suppress marginpar
+
+%%%%%%%%%%%%%%%%%%%%%%%% Statements
+\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{prop}{Proposition}[section]
+\newtheorem{prop}[theorem]{Proposition}
+%\newtheorem{defn}{Definition}[section]
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{coro}[theorem]{Corollary}
+\newtheorem{prop-def}[theorem]{Proposition-Definition}
+\newtheorem{claim}{Claim}[section]
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{propprop}{Proposed Proposition}[section]
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{exam}[theorem]{Example}
+\newtheorem{assumption}{Assumption}
+\newtheorem{condition}[theorem]{Assumption}
+
+\renewcommand{\labelenumi}{{\rm(\roman{enumi})}}
+\renewcommand{\theenumi}{\roman{enumi}}
+
+\newcommand{\vectornorm}[1]{\left|\left|#1\right|\right|}
+
+\nc{\tred}[1]{\textcolor{red}{#1}}
+\nc{\tblue}[1]{\textcolor{blue}{#1}}
+\nc{\tgreen}[1]{\textcolor{green}{#1}}
+\nc{\tpurple}[1]{\textcolor{purple}{#1}}
+\nc{\btred}[1]{\textcolor{red}{\bf #1}}
+\nc{\btblue}[1]{\textcolor{blue}{\bf #1}}
+\nc{\btgreen}[1]{\textcolor{green}{\bf #1}}
+\nc{\btpurple}[1]{\textcolor{purple}{\bf #1}}
+
+\nc{\li}[1]{\textcolor{red}{Li:#1}}
+\nc{\cm}[1]{\textcolor{blue}{Chengming: #1}}
+\nc{\xiang}[1]{\textcolor{green}{Xiang: #1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%% symbols
+\nc{\adec}{\check{;}} \nc{\aop}{\alpha}
+\nc{\dftimes}{\widetilde{\otimes}} \nc{\dfl}{\succ}
+\nc{\dfr}{\prec} \nc{\dfc}{\circ} \nc{\dfb}{\bullet}
+\nc{\dft}{\star} \nc{\dfcf}{{\mathbf k}} \nc{\spr}{\cdot}
+\nc{\twopr}{\circ} \nc{\tspr}{\star} \nc{\sempr}{\ast}
+\nc{\disp}[1]{\displaystyle{#1}}
+\nc{\bin}[2]{ (_{\stackrel{\scs{#1}}{\scs{#2}}})}  %binomial coeff
+\nc{\binc}[2]{ \left (\!\! \begin{array}{c} \scs{#1}\\
+    \scs{#2} \end{array}\!\! \right )}  %binomial coeff
+\nc{\bincc}[2]{  \left ( {\scs{#1} \atop
+    \vspace{-.5cm}\scs{#2}} \right )}  %binomial coeff
+\nc{\sarray}[2]{\begin{array}{c}#1 \vspace{.1cm}\\ \hline
+    \vspace{-.35cm} \\ #2 \end{array}}
+\nc{\bs}{\bar{S}} \nc{\dcup}{\stackrel{\bullet}{\cup}}
+\nc{\dbigcup}{\stackrel{\bullet}{\bigcup}} \nc{\etree}{\big |}
+\nc{\la}{\longrightarrow} \nc{\fe}{\'{e}} \nc{\rar}{\rightarrow}
+\nc{\dar}{\downarrow} \nc{\dap}[1]{\downarrow
+\rlap{$\scriptstyle{#1}$}} \nc{\uap}[1]{\uparrow
+\rlap{$\scriptstyle{#1}$}} \nc{\defeq}{\stackrel{\rm def}{=}}
+\nc{\dis}[1]{\displaystyle{#1}} \nc{\dotcup}{\,
+\displaystyle{\bigcup^\bullet}\ } \nc{\sdotcup}{\tiny{
+\displaystyle{\bigcup^\bullet}\ }} \nc{\hcm}{\ \hat{,}\ }
+\nc{\hcirc}{\hat{\circ}} \nc{\hts}{\hat{\shpr}}
+\nc{\lts}{\stackrel{\leftarrow}{\shpr}}
+\nc{\rts}{\stackrel{\rightarrow}{\shpr}} \nc{\lleft}{[}
+\nc{\lright}{]} \nc{\uni}[1]{\tilde{#1}} \nc{\wor}[1]{\check{#1}}
+\nc{\free}[1]{\bar{#1}} \nc{\den}[1]{\check{#1}} \nc{\lrpa}{\wr}
+\nc{\curlyl}{\left \{ \begin{array}{c} {} \\ {} \end{array}
+    \right .  \!\!\!\!\!\!\!}
+\nc{\curlyr}{ \!\!\!\!\!\!\!
+    \left . \begin{array}{c} {} \\ {} \end{array}
+    \right \} }
+\nc{\leaf}{\ell}       % number of leafs
+\nc{\longmid}{\left | \begin{array}{c} {} \\ {} \end{array}
+    \right . \!\!\!\!\!\!\!}
+\nc{\ot}{\otimes} \nc{\sot}{{\scriptstyle{\ot}}}
+\nc{\otm}{\overline{\ot}} \nc{\ora}[1]{\stackrel{#1}{\rar}}
+\nc{\ola}[1]{\stackrel{#1}{\la}}%${\Bbb Z}$
+\nc{\pltree}{\calt^\pl} \nc{\epltree}{\calt^{\pl,\NC}}
+\nc{\rbpltree}{\calt^r} \nc{\scs}[1]{\scriptstyle{#1}}
+\nc{\mrm}[1]{{\rm #1}}
+\nc{\dirlim}{\displaystyle{\lim_{\longrightarrow}}\,}
+\nc{\invlim}{\displaystyle{\lim_{\longleftarrow}}\,}
+\nc{\mvp}{\vspace{0.5cm}} \nc{\svp}{\vspace{2cm}}
+\nc{\vp}{\vspace{8cm}} \nc{\proofbegin}{\noindent{\bf Proof: }}
+%\nc{\proofbegin}{\begin{proof}} % AMS command
+\nc{\proofend}{$\blacksquare$ \vspace{0.5cm}}
+%\nc{\proofend}{\end{proof}} %AMS command
+\nc{\freerbpl}{{F^{\mathrm RBPL}}}
+\nc{\sha}{{\mbox{\cyr X}}}  %used to be \cyr
+\nc{\ncsha}{{\mbox{\cyr X}^{\mathrm NC}}} \nc{\ncshao}{{\mbox{\cyr
+X}^{\mathrm NC,\,0}}} \nc{\rpr}{\circ} \nc{\apr}{\cdot}
+\nc{\dpr}{{\tiny\diamond}} \nc{\rprpm}{{\rpr}}
+\nc{\shpr}{\diamond}    %Shuffle product
+\nc{\shprm}{\overline{\diamond}}    %Shuffle product
+\nc{\shpro}{\diamond^0}    %Shuffle product
+\nc{\shprr}{\diamond^r}     %product on controlled trees
+\nc{\shpra}{\overline{\diamond}^r} \nc{\shpru}{\check{\diamond}}
+\nc{\catpr}{\diamond_l} \nc{\rcatpr}{\diamond_r}
+\nc{\lapr}{\diamond_a} \nc{\sqcupm}{\ot} \nc{\lepr}{\diamond_e}
+\nc{\vep}{\varepsilon} \nc{\labs}{\mid\!} \nc{\rabs}{\!\mid}
+\nc{\hsha}{\widehat{\sha}} \nc{\lsha}{\stackrel{\leftarrow}{\sha}}
+\nc{\rsha}{\stackrel{\rightarrow}{\sha}} \nc{\lc}{\lfloor}
+\nc{\rc}{\rfloor} \nc{\tpr}{\sqcup} \nc{\nctpr}{\vee}
+\nc{\plpr}{\star} \nc{\rbplpr}{\bar{\plpr}} \nc{\sqmon}[1]{\langle
+#1\rangle} \nc{\forest}{\calf} \nc{\ass}[1]{\alpha({#1})}
+\nc{\altx}{\Lambda_X} \nc{\vecT}{\vec{T}} \nc{\onetree}{\bullet}
+\nc{\Ao}{\check{A}} \nc{\seta}{\underline{\Ao}}
+\nc{\deltaa}{\overline{\delta}} \nc{\trho}{\tilde{\rho}}
+
+
+%%%%%%%%%%%%%%%%%%%%% roman fonts, in alphabetic order
+\nc{\mmbox}[1]{\mbox{\ #1\ }} \nc{\ann}{\mrm{ann}}
+\nc{\Aut}{\mrm{Aut}} \nc{\can}{\mrm{can}} \nc{\twoalg}{{two-sided
+algebra}\xspace} \nc{\bwt}{{mass}\xspace}
+\nc{\bop}{{modification}\xspace} \nc{\ewt}{{mass}\xspace}
+\nc{\ewts}{{masses}\xspace} \nc{\tto}{{extended}\xspace}
+\nc{\Tto}{{Extended}\xspace} \nc{\tte}{{extended}\xspace}
+\nc{\gyb}{{generalized}\xspace} \nc{\Gyb}{{Generalized}\xspace}
+\nc{\MAYBE}{{EAYBE}\xspace} \nc{\GAYBE}{{GAYBE}\xspace}
+\nc{\esym}{\vep} \nc{\colim}{\mrm{colim}} \nc{\Cont}{\mrm{Cont}}
+\nc{\rchar}{\mrm{char}} \nc{\cok}{\mrm{coker}} \nc{\dtf}{{R-{\rm
+tf}}} \nc{\dtor}{{R-{\rm tor}}}
+\renewcommand{\det}{\mrm{det}}
+\nc{\depth}{{\mrm d}} \nc{\Div}{{\mrm Div}} \nc{\End}{\mrm{End}}
+\nc{\Ext}{\mrm{Ext}} \nc{\Fil}{\mrm{Fil}} \nc{\Frob}{\mrm{Frob}}
+\nc{\Gal}{\mrm{Gal}} \nc{\GL}{\mrm{GL}} \nc{\Hom}{\mrm{Hom}}
+\nc{\hsr}{\mrm{H}} \nc{\hpol}{\mrm{HP}} \nc{\id}{\mrm{id}}
+\nc{\im}{\mrm{im}} \nc{\incl}{\mrm{incl}}
+\nc{\length}{\mrm{length}} \nc{\LR}{\mrm{LR}} \nc{\mchar}{\rm
+char} \nc{\NC}{\mrm{NC}} \nc{\mpart}{\mrm{part}}
+\nc{\pl}{\mrm{PL}} \nc{\ql}{{\QQ_\ell}} \nc{\qp}{{\QQ_p}}
+\nc{\rank}{\mrm{rank}} \nc{\rba}{\rm{RBA }} \nc{\rbas}{\rm{RBAs }}
+\nc{\rbpl}{\mrm{RBPL}} \nc{\rbw}{\rm{RBW }} \nc{\rbws}{\rm{RBWs }}
+\nc{\rcot}{\mrm{cot}} \nc{\rest}{\rm{controlled}\xspace}
+\nc{\rdef}{\mrm{def}} \nc{\rdiv}{{\rm div}} \nc{\rtf}{{\rm tf}}
+\nc{\rtor}{{\rm tor}} \nc{\res}{\mrm{res}} \nc{\SL}{\mrm{SL}}
+\nc{\Spec}{\mrm{Spec}} \nc{\tor}{\mrm{tor}} \nc{\Tr}{\mrm{Tr}}
+\nc{\mtr}{\mrm{sk}} \nc{\type}{{\bwt}\xspace}
+
+%%%%%%%%%%%%%%%%%% bold face
+\nc{\ab}{\mathbf{Ab}} \nc{\Alg}{\mathbf{Alg}}
+\nc{\Algo}{\mathbf{Alg}^0} \nc{\Bax}{\mathbf{Bax}}
+\nc{\Baxo}{\mathbf{Bax}^0} \nc{\RB}{\mathbf{RB}}
+\nc{\RBo}{\mathbf{RB}^0} \nc{\BRB}{\mathbf{RB}}
+\nc{\Dend}{\mathbf{DD}} \nc{\bfk}{{\bf k}} \nc{\bfone}{{\bf 1}}
+\nc{\base}[1]{{a_{#1}}} \nc{\detail}{\marginpar{\bf More detail}
+    \noindent{\bf Need more detail!}
+    \svp}
+\nc{\Diff}{\mathbf{Diff}} \nc{\gap}{\marginpar{\bf
+Incomplete}\noindent{\bf Incomplete!!}
+    \svp}
+\nc{\FMod}{\mathbf{FMod}} \nc{\mset}{\mathbf{MSet}}
+\nc{\rb}{\mathrm{RB}} \nc{\Int}{\mathbf{Int}}
+\nc{\Mon}{\mathbf{Mon}}
+%\nc{\remark}{\noindent{\bf Remark: }}
+\nc{\remarks}{\noindent{\bf Remarks: }}
+\nc{\OS}{\mathbf{OS}} %free operated semigroup
+\nc{\Rep}{\mathbf{Rep}} \nc{\Rings}{\mathbf{Rings}}
+\nc{\Sets}{\mathbf{Sets}} \nc{\DT}{\mathbf{DT}}
+
+%%%%%%%%%%%%%%%%%%%Bbb fonts
+\nc{\BA}{{\mathbb A}} \nc{\CC}{{\mathbb C}} \nc{\DD}{{\mathbb D}}
+\nc{\EE}{{\mathbb E}} \nc{\FF}{{\mathbb F}} \nc{\GG}{{\mathbb G}}
+\nc{\HH}{{\mathbb H}} \nc{\LL}{{\mathbb L}} \nc{\NN}{{\mathbb N}}
+\nc{\QQ}{{\mathbb Q}} \nc{\RR}{{\mathbb R}} \nc{\TT}{{\mathbb T}}
+\nc{\VV}{{\mathbb V}} \nc{\ZZ}{{\mathbb Z}}
+
+
+%%%%%%%%%%%%%%%%%%% cal fonts
+
+\nc{\calao}{{\mathcal A}} \nc{\cala}{{\mathcal A}}
+\nc{\calc}{{\mathcal C}} \nc{\cald}{{\mathcal D}}
+\nc{\cale}{{\mathcal E}} \nc{\calf}{{\mathcal F}}
+\nc{\calfr}{{{\mathcal F}^{\,r}}} \nc{\calfo}{{\mathcal F}^0}
+\nc{\calfro}{{\mathcal F}^{\,r,0}} \nc{\oF}{\overline{F}}
+\nc{\calg}{{\mathcal G}} \nc{\calh}{{\mathcal H}}
+\nc{\cali}{{\mathcal I}} \nc{\calj}{{\mathcal J}}
+\nc{\call}{{\mathcal L}} \nc{\calm}{{\mathcal M}}
+\nc{\caln}{{\mathcal N}} \nc{\calo}{{\mathcal O}}
+\nc{\calp}{{\mathcal P}} \nc{\calr}{{\mathcal R}}
+\nc{\calt}{{\mathcal T}} \nc{\caltr}{{\mathcal T}^{\,r}}
+\nc{\calu}{{\mathcal U}} \nc{\calv}{{\mathcal V}}
+\nc{\calw}{{\mathcal W}} \nc{\calx}{{\mathcal X}}
+\nc{\CA}{\mathcal{A}}
+
+
+%%%%%%%%%%%%%%%%%%  frak fonts
+\nc{\fraka}{{\mathfrak a}} \nc{\frakB}{{\mathfrak B}}
+\nc{\frakb}{{\mathfrak b}} \nc{\frakd}{{\mathfrak d}}
+\nc{\oD}{\overline{D}} \nc{\frakF}{{\mathfrak F}}
+\nc{\frakg}{{\mathfrak g}} \nc{\frakk}{{\mathfrak k}}
+\nc{\frakm}{{\mathfrak m}} \nc{\frakM}{{\mathfrak M}}
+\nc{\frakMo}{{\mathfrak M}^0} \nc{\frakp}{{\mathfrak p}}
+\nc{\frakS}{{\mathfrak S}} \nc{\frakSo}{{\mathfrak S}^0}
+\nc{\fraks}{{\mathfrak s}} \nc{\os}{\overline{\fraks}}
+\nc{\frakT}{{\mathfrak T}} \nc{\oT}{\overline{T}}
+%\nc{\frakx}{{\mathfrak x}}
+\nc{\frakX}{{\mathfrak X}} \nc{\frakXo}{{\mathfrak X}^0}
+\nc{\frakx}{{\mathbf x}}
+%\nc{\frakTxo}{{\frakTx}^0}
+\nc{\frakTx}{\frakT}      %All rooted trees, correspond to \ncsha(X)
+\nc{\frakTa}{\frakT^a}        % rooted trees for \ncsha(A)
+\nc{\frakTxo}{\frakTx^0}   % rooted trees for \ncshao(X)
+\nc{\caltao}{\calt^{a,0}}   % rooted trees for \ncshao(A)
+\nc{\ox}{\overline{\frakx}} \nc{\fraky}{{\mathfrak y}}
+\nc{\frakz}{{\mathfrak z}} \nc{\oX}{\overline{X}}
+
+\font\cyr=wncyr10
+
+\nc{\redtext}[1]{\textcolor{red}{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\hfil {\bf \Huge{Quiz 4}}\hfil
+
+\bigskip
+
+\hfil {Group 2} \hfil
+
+
+
+\bigskip
+
+\section{Problem 1}
+
+If the drunk man takes his own seat, every one following him will take his/her own seat too. If the drunk man takes a wrong seat that is i, everyone between the drunk man and i-th guy will take his/her own but the i-th guy becomes the new drunk man.
+
+That being said, for each drunk man, if he takes the 1st seat, everyone following him will take the correct seat including the last two guys. But if he takes 49th or 50th seat, the last two guys will never take the correct seats. The former probability is alway half of the later.
+
+Thus the probability is 1/3. 
+
+\section{Problem 2}
+
+For 5 girls, there are $C_5^2 = 10$ different two girls pairs. The question asks us to choose 5 out of 10 pairs so that each girls shows up twice. Let's note the girls with 'A, B, C, D, E'. The possible combinations are:
+
+\begin{center}
+\begin{tabular}{cccc}
+\hline
+\hline
+AB & AC & AD & AE  \\
+   & BC & BD & BE  \\
+   &    & CD & CE  \\
+   &    &    & DE  \\
+\hline
+\end{tabular}
+\end{center}
+
+To guarantee each girl appears twice, we have $C_4^2=6$ ways to choose 2 first row, $C_2^1=2$ ways to choose 1 from second row and no chose for the rest rows. This gives us $6\times 2=12$ possible choices. Because all girls have equal chance to be at position of A,B,C,D,E. So the total number is $5! \times 12 = 1440$.
+
+\section{Problem 3}
+Similarly we have $C_7^2 = 21$ different pairs and can get table below.
+\begin{center}
+\begin{tabular}{cccccc}
+\hline
+\hline
+AB & AC & AD & AE & AF & AG \\
+   & BC & BD & BE & BF & BG \\
+   &    & CD & CE & CF & CG \\
+   &    &    & DE & DF & DG \\
+   &    &    &    & EF & EG \\
+   &    &    &    &    & FG \\
+\hline
+\end{tabular}
+\end{center}
+
+Total possible choices $C_6^2\times 1 \time 3 + C_6^2\times C_4^1 \times 1 + C_6^2 C_4^1 C_3^1 C_2^1  = 15\times 31 =465$.
+
+The total number possible arrangements is $7!\times 465 = 2343600$
+
+\section{Problem 4}
+The two prices we are considering are:
+\begin{eqnarray*}
+	S_{t_1} =S_0 \exp[(\mu_1-\sigma_1^2/2)t_1 +\sigma_1 W_1] = \bar{S}_{t_1}e^{\sigma_1 W_1+\sigma_1^2 t_1/2 } \\
+	S_{t_2} =S_0 \exp[(\mu_2-\sigma_2^2/2)t_2 +\sigma_2 W_2] = \bar{S}_{t_2}e^{\sigma_2 W_2+\sigma_2^2 t_2/2 }
+\end{eqnarray*}
+
+The correlation we want is:
+\[
+corr(S_{t_1}, S_{t_2}) = \frac{Cov(S_{t_1}, S_{t_2})}{\sqrt{Var(S_{t_1}) Var(S_{t_1})}} = \frac{<S_{t_1}S_{t_2}> - \bar{S}_{t_1} \bar{S}_{t_2}}{\sqrt{Var(S_{t_1}) Var(S_{t_1})}}
+\]
+
+The variance can be calculated as:
+\[
+Var(S_{t_1}) = <S_{t_1}^2>  - <S_{t_1}>^2 = S_0^2 e^{(2\mu_1+\sigma_1^2)t_1} - S_0^2 e^{2\mu_1 t_1} = \bar{S}_{t_1}^2(e^{\sigma_1^2 t_1}-1)
+\]
+
+Similarly we have:
+\[
+Var(S_{t_2}) =S_0^2 e^{(2\mu_2+\sigma_2^2)t_2} - S_0^2 e^{2\mu_2 t_2} = \bar{S}_{t_2}^2(e^{\sigma_2^2 t_2}-1) 
+\]
+and 
+\[
+<S_{t_1}S_{t_2}> = \bar{S}_{t_1}\bar{S}_{t_2}<e^{\sigma_2 W_1+\sigma_2 W_2 +(\sigma_1^2 t_1 + \sigma_2^2 t_2)/2}> = \bar{S}_{t_1}\bar{S}_{t_2}
+\]
+
+So we have $corr(S_{t_1}, S_{t_2})=0$. Brownian motion has no memory.
+
+\section{Problem 5}
+
+From the definition of martingale, we need to consider :
+\[
+Exp(W_{t+1}^N|W_t^N) = Exp(W_t^N + N W_t dW_t^{N-1} +\dots + dW_t^N|W_t^N)
+\]
+
+Consider $N>1$. If N is even, the last term in the series contributes $Exp(dW_t^N|W_t) = dt^{N/2}$ which is non-zero. If N is odd, the second in the series contributes $Exp(N W_t dW_t^{N-1}|W_t) = Exp(W_t) dt^{(N-1)/2}$ which is non-zero. So $W_t^N$ is not martingale when N>1.
+
+Only when N=1 it is martingale.
+
+\section{Problem 6}
+Reference: Xinfeng Zhou's book, pg 149
+
+Under risk neutral measure $dS = rSdt + \sigma S dW(t)$, random variable $V=1/S$ follows geometric brownian motion:
+\[
+dV = (-r + \sigma^2)V dt - \sigma V dW(t)
+\]
+
+We can apply Ito's lemma:
+\[
+d(\ln V)=(-r +\frac{1}{2}\sigma^2)dt - \sigma dW(t)
+\]
+
+Hence $E[V_T]=\frac{1}{S_t}e^{-rt+\sigma^2 t}$.
+
+Discount the payoff we have:
+\[
+V = \frac{1}{S_t}e^{-2 rt +\sigma^2 t}
+\]
+
+
+
+
+
+\section{Problem 7}
+Reference: \url{https://en.wikipedia.org/wiki/Numerical_stability}
+\newline
+\url{https://en.wikipedia.org/wiki/Explicit_and_implicit_methods}
+\newline
+
+An algorithm for solving a linear evolutionary partial differential equation is stable if the total variation of the numerical solution at a fixed time remains bounded as the step size goes to zero
+
+Explicit methods calculate the state of a system at a later time from the state of the system at the current time, while implicit methods find a solution by solving an equation involving both the current state of the system and the later one
+\section{Problem 8}
+
+The answer is yes.
+
+Consider the time right before the rate cross 0.5 from below.
+If the total shoots is even $2n$, then the current rate is: $(n-1)/2n$. The next successful shoot makes it $n/(2n+1)$. This is the case the total shoots is odd.
+
+If the total shoots is odd $2n+1$, then the current rate is: $n/(2n+1)$. The next successful shoot takes it to $n+1/(2n+2)$ which is 0.5.
+
+So there will always be a moment the rate equals 0.5.
+
+\section{Problem 9}
+
+We need to consider two things: expected return and risk.
+
+Consider the two strategy returns have different distribution/variance, it's not safe to use average return directly, instead we can use Welch Test to compare the expected return.
+
+Knowing expected return, risk free return and variance, we can calculate Sharpe Ratio of each strategy. Sharpe ratio measures return per volatility. Higher sharpe ratio means expected higher return with risk.
+
+ To take a higher expected return or higher sharpe ratio is a question of risk preference.
+
+\section{Problem 10}
+
+We have three ways.
+
+1. Use cross product of vectors. 
+2. Barycentric Technique
+3. Say we have a triangle ABC and want to know if point P is inside of this triangle. What we can do is to express AP as the linear combination of AB and AC
+\[
+\vec{(AP)}=a\vec{(AB)}+b\vec{(AC)}
+\]Solve for a and b. P is inside the triangle if 1. a,b>0; 2. a+b<1.
+
+Solution 1:
+\begin{framed}
+\lstinputlisting{CC_P10.py}
+\end{framed}
+
+Solution 3:
+
+\begin{framed}
+\lstinputlisting{TM_P10.cpp}
+\end{framed}
+
+\section{Problem 11}
+This can be done by checking the pair of chars that located at opposite position. 
+
+\begin{framed}
+\lstinputlisting{TM_P11.cpp}
+\end{framed}
+
+
+
+\section{Problem 12}
+
+12.	DP solution $O(N^2)$ time complexity, O(N) space complexity. Basic idea is to use an array of same size as the data to store the length of the longest decreasing array end with arr[i]. And that can be done by finding the max(table[i],table[j]+1) for all $arr[j]>arr[i],j<i$.
+
+\begin{framed}
+\lstinputlisting{TM_P12.cpp}
+\end{framed}
+
+There is a O(NlogN) algorithm using binary search + DP.Reference: \url{https://swiyu.wordpress.com/2012/10/15/longest-increasing-subarray/}
+
+
+\section{Problem 13}
+
+This is a depth first search problem. Use back-tracking algorithm.
+
+
+\begin{framed}
+\lstinputlisting{TM_P13.cpp}
+\end{framed}
+
+
+
+\section{Problem 14}
+
+This is a dynamical problem. max\_value[i][j]=max(max\_value[i][j-1]+value[i][j], max\_value[i-1][j]+value[i][j]). Use a 2d-array to record local max\_value so we don't need to do repeated calculation.
+
+
+
+\begin{framed}
+\lstinputlisting{TM_P14.cpp}
+\end{framed}
+
+
+
+%\begin{framed}
+%\lstinputlisting{P11.cpp}
+%\end{framed}
+%Reference: \url{http://silviuardelean.ro/2012/06/05/few-singleton-approaches}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+

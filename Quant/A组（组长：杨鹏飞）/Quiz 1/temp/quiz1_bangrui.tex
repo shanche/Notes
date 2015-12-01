@@ -1,0 +1,375 @@
+\documentclass[11pt]{article}
+
+\usepackage[letterpaper,left=1.6in,right=1.6in,top=1.2in,bottom=1.2in]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\proof}{\bf Proof: \rm }%\nr}
+
+\setcounter{secnumdepth}{0}
+\usepackage{bbm}
+
+
+%\usepackage[vlined]{algorithm2e}
+\usepackage{algorithm,algorithmic}
+\usepackage[]{algorithm2e}
+\usepackage{paralist}
+\usepackage{tikz}
+\usepackage{xcolor,colortbl}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\begin{document}
+\setlength{\parindent}{0in}
+\addtolength{\parskip}{0.1cm}
+\setlength{\fboxrule}{.5mm}\setlength{\fboxsep}{1.2mm}
+\newlength{\boxlength}\setlength{\boxlength}{\textwidth}
+\addtolength{\boxlength}{-4mm}
+\begin{center}\framebox{\parbox{\boxlength}{{\bf
+QISHI QUIZ1 \hfill Due on 11:59PM SEP 29, 2015}\\
+% TODO: fill in your own name, netID, and collaborators
+Name: Bangrui Chen
+}}
+\end{center}
+\vspace{1mm}
+
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+backgroundcolor=\color{lbcolor},
+    tabsize=4,    
+%   rulecolor=,
+    language=[GNU]C++,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+        showstringspaces=false,
+        extendedchars=false,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        numbers=left,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.026,0.112,0.095},
+        stringstyle=\color[rgb]{0.627,0.126,0.941},
+        numberstyle=\color[rgb]{0.205, 0.142, 0.73},
+%        \lstdefinestyle{C++}{language=C++,style=numbers}’.
+}
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=4,
+  language=C++,
+  captionpos=b,
+  tabsize=3,
+  frame=lines,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  showstringspaces=false,
+  basicstyle=\footnotesize,
+%  identifierstyle=\color{magenta},
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color[rgb]{0,1,0},
+  stringstyle=\color{red}
+  }
+
+
+% TODO: write your solution here
+I didn't write down answers for all the problems since for some of them, my solution is the same with other people's.
+\section{Math}
+\subsection{Problem 1}
+Solution: Denote the three points as point 1, point2 and point3. Consider for point1, the probability for point2 and point3 lies in the semi-circle that starts from point1 clockwise is $\frac{1}{2^{2}}$. Since point1, point2 and point3 are symmetric and we have three points in total, thus the final probability is $3\times \frac{1}{2^{2}}$. 
+
+In general, if there are n points are the probability they all lie in a semi-circle is $n \times \frac{1}{2^{n-1}}$.
+
+\subsection{Problem 7}
+Without loss of generality, we assume the total length of N pieces is 1. An easy observation is that N pieces can form a polyhedron if and only if the total length of any $N-1$ pieces is greater than the length of the other one. Or equivalently, let we denote the length of the N pieces from the beginning to the end as $x_{1},\cdots,x_{N}$, then they can form a polyhedron if and only if
+\begin{align}
+\sum_{j\neq i}x_{j}\geq x_{i}>0 \nonumber \hspace{1mm}\forall i \\
+\iff 0<x_{i}<\frac{1}{2} \nonumber \hspace{1mm}\forall i
+\end{align}
+
+Based on the above analysis, we know N pieces can't forma a polyhedron if and only if there is one piece $x_{i}\geq \frac{1}{2}$. Since
+\begin{align}
+P(\exists i,x_{i}\geq \frac{1}{2})&=\sum_{i=1}^{N}P(x_{i}\geq \frac{1}{2})\nonumber \\
+&=NP(x_{1}\geq \frac{1}{2})\nonumber \\
+&=\frac{N}{2^{N-1}} \nonumber
+\end{align}
+where the last equation is due to all the $x_{2},\cdots, x_{n}$ lies in $[\frac{1}{2},1]$.
+Thus,
+\begin{equation}
+P(0<x_{i}<\frac{1}{2} \nonumber \hspace{1mm}\forall i)=1-P(\exists i,x_{i}\geq \frac{1}{2})=1-\frac{N}{2^{N-1}}. \nonumber 
+\end{equation}
+Thus, the probability that N pieces will form a polyhedron is $1-\frac{N}{2^{N-1}}$.
+
+\subsection{Problem 8}
+Here is a very interesting experiment:
+\url{http://www.automated-trading-system.com/moving-median-better-indicator-than-moving-average/}.
+
+The results of the experiments suggest that: the moving median will not increase robustness and the performance will also drop.
+
+
+\section{Programming}
+\subsection{Problem 12}
+\begin{lstlisting}
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int m, int n) {
+        ListNode* pointerM = head;
+        if (m == 1) {
+            ListNode* pointerN = head;
+            for (int i = 1; i < n; i++) {
+                pointerN = pointerN->next;
+            }
+            while (head != pointerN) {
+                ListNode* temp = head;
+                head = head->next;
+                temp->next = pointerN->next;
+                pointerN->next = temp;
+            }
+            return head;
+        }
+        for (int i = 1; i < m - 1; i++) {
+            pointerM = pointerM->next;
+        }
+        ListNode* pointerN = pointerM;
+        for (int i = 0; i <= n-m; i++) {
+            pointerN = pointerN->next;
+        }
+        while (pointerM->next != pointerN) {
+            ListNode* temp = pointerM ->next;
+            pointerM->next = temp->next;
+            temp->next = pointerN->next;
+            pointerN->next = temp;
+        }
+        return head;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Problem 13}
+\begin{itemize}
+\item Solution 1: Use priority queue:
+\begin{lstlisting}
+// Solution 1:
+bool ave_lower_P_1(int N, int M, float P, vector<float> price) {
+
+  // imput the data into a priority queue
+  priority_queue<float> price_new;
+  for (int i = 0; i < N; i++) {
+    price_new.push(-price[i]);
+  }
+
+  // calculate the average of the lowest M days closing price
+  float sum = 0;
+  for (int i = 0; i < M; i++) {
+    sum += (-price_new.top());
+    price_new.pop();
+  }
+  float ave = sum / M;
+
+  cout << ave << endl;
+  // return true or false
+  return (ave <= P); 
+}
+\end{lstlisting}
+\item Solution 2: Use sort in c++:
+\begin{lstlisting}
+// Solution 2:
+bool ave_lower_P_2(int N, int M, float P, vector<float> price) {
+
+  sort(price.begin(), price.end());
+
+  // calculate the average of the lowest M days closing price
+  float sum = 0;
+  for (int i = 0; i < M; i++) {
+    sum += (price[i]);
+  }
+  float ave = sum / M;
+
+  cout << ave << endl;
+  // return true or false
+  return (ave <= P);
+}
+\end{lstlisting}
+\item Solution 3: Use min heap in c++:
+\begin{lstlisting}
+// Solution 3:
+bool ave_lower_P_3(int N, int M, float P, vector<float> price) {
+
+  make_heap(price.begin(), price.end(), std::greater<int>());
+
+  float sum = 0;
+  for (int i = 0; i < M; i++) {
+    sum += price.front();
+    cout << price.front();
+    pop_heap(price.begin(), price.end() - 1 - i, std::greater<int>());
+    price.pop_back();
+  }
+
+  float ave = sum / M;
+
+  cout << ave << endl;
+  // return true or false
+  return (ave <= P);
+}
+\end{lstlisting}
+
+\end{itemize}
+
+
+\subsection{Problem 17}
+\begin{lstlisting}
+class Solution {
+public:
+    int maxProfit(vector<int> &prices) {
+        int profit = 0;
+        for (int i = 1; i < prices.size(); i++) {
+            if (prices[i] > prices[i-1]) {
+                profit += prices[i] - prices[i - 1];
+            }
+        }
+        return profit;
+    }
+};
+\end{lstlisting}
+
+\begin{appendix}
+\section{Code for testing problem 12}
+\begin{lstlisting}
+#include <algorithm>
+#include <assert.h>
+#include <iostream>
+#include <queue>
+#include <vector>
+
+using namespace std;
+
+
+// Solution 1:
+bool ave_lower_P_1(int N, int M, float P, vector<float> price) {
+
+  // imput the data into a priority queue
+  priority_queue<float> price_new;
+  for (int i = 0; i < N; i++) {
+    price_new.push(-price[i]);
+  }
+
+  // calculate the average of the lowest M days closing price
+  float sum = 0;
+  for (int i = 0; i < M; i++) {
+    sum += (-price_new.top());
+    price_new.pop();
+  }
+  float ave = sum / M;
+
+  cout << ave << endl;
+  // return true or false
+  return (ave <= P);
+}
+// Solution 2:
+bool ave_lower_P_2(int N, int M, float P, vector<float> price) {
+
+  sort(price.begin(), price.end());
+
+  // calculate the average of the lowest M days closing price
+  float sum = 0;
+  for (int i = 0; i < M; i++) {
+    sum += (price[i]);
+  }
+  float ave = sum / M;
+
+  cout << ave << endl;
+  // return true or false
+  return (ave <= P);
+}
+
+// Solution 3:
+bool ave_lower_P_3(int N, int M, float P, vector<float> price) {
+
+  make_heap(price.begin(), price.end(), std::greater<int>());
+
+  float sum = 0;
+  for (int i = 0; i < M; i++) {
+    sum += price.front();
+    cout << price.front();
+    pop_heap(price.begin(), price.end() - 1 - i, std::greater<int>());
+    price.pop_back();
+  }
+
+  float ave = sum / M;
+
+  cout << ave << endl;
+  // return true or false
+  return (ave <= P);
+}
+int main() {
+  // input the data
+  int N,M;
+  cout << "Input the number of trading days N" << endl;
+  cin >> N;
+  cout << "Input M (integer)" << endl;
+  cin >> M;
+  assert(M <= N && M >= 1);
+  float P;
+  cout << "Insert a price P" << endl;;
+  cin >> P;
+  assert( P > 0);
+  cout << "Now insert the closing prices for the last " << N << " days" << endl;
+  vector<float> price;
+  float temp;
+  for (int i = 0; i < N; i++) {
+    cin >> temp;
+    price.push_back(temp);
+  }
+
+  // check whether there exists M days average closing price less than P
+  if (ave_lower_P_1(N,M,P,price)) {
+      cout << "Yes, there exists " << M << " days" << endl;
+  } else {
+      cout << "No, there does not exist" << endl;
+  }
+
+  if (ave_lower_P_2(N,M,P,price)) {
+      cout << "Yes, there exists " << M << " days" << endl;
+  } else {
+      cout << "No, there does not exist" << endl;
+  }
+
+  if (ave_lower_P_3(N,M,P,price)) {
+      cout << "Yes, there exists " << M << " days" << endl;
+  } else {
+      cout << "No, there does not exist" << endl;
+  }
+
+  return 1;
+}
+
+\end{lstlisting}
+
+\end{appendix}
+
+
+
+\end{document}

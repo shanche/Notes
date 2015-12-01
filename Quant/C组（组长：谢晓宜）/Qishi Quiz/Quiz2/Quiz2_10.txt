@@ -1,0 +1,4 @@
+Quiz2
+10.const function 
+   input: reference to (a const pointer to a const integer) it is a reference to pointer
+   output: const pointer to a const integer.

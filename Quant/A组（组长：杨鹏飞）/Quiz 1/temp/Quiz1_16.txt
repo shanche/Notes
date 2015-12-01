@@ -1,0 +1,35 @@
+Ideas: 1.Successive Bins/2.Reservoir sampling/3.Max and Min heap 
+
+Successive Bins:
+http://www.stat.cmu.edu/~ryantibs/papers/median.pdf
+(paper by Robert Tibshirani's son...)
+
+Sampling method:
+http://www.tks.informatik.uni-frankfurt.de/data/events/deis10/downloads/10452.ZelkeMariano.Slides.pdf
+
+Max and Min heap:
+Hold two heaps, one max heap for values less than current median, one min heap
+for values large than current median. The size of the two heaps diff at most 1
+by constantly change the current median.
+
+Suppose we have a heap structure in C++
+
+int get_median(int new_number, Heap& min_heap, Heap& max_heap) {
+  if (max_heap.size() && new_number < max_heap.top()) {
+    max_heap.enqueue(new_number);
+    if (max_heap.size() > min_heap.size()) {
+      min_heap.enqueue(max_heap.dequeue());
+    }
+  } else {
+    min_heap.enqueue(new_number);
+    if (min_heap.size() > max_heap.size()+1) {
+      max_heap.enqueue(min_heap.dequeue());
+    }
+  }
+
+  if (max_heap.size()==min_heap.size()) {
+    return (max_heap.top() + min_heap.top())/2;
+  } else {
+    return  min_heap.top();
+  }
+}

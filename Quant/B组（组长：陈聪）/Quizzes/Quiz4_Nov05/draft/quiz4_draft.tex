@@ -1,0 +1,391 @@
+%
+\documentclass[12pt]{amsart}
+%\usepackage{txfonts}      %{article} was 12pt latex e
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage[dvips]{color}
+\usepackage{multicol}
+\usepackage[all]{xy}           %xypic macro for latex2.09
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{colordvi}
+\usepackage{xspace}
+\usepackage{listings}
+\usepackage{framed}
+\usepackage{lipsum}
+%\usepackage{axodraw}
+%\usepackage{hyperref}
+
+\usepackage[active]{srcltx} %SRC Specials for DVI Searching
+
+
+\renewcommand\baselinestretch{1}    %was    1, 1.5 for double sp
+
+%%standard setting
+%\topmargin -0.3truein \textheight 8.4truein \oddsidemargin 0.2truein
+%\evensidemargin 0.2truein \textwidth 440pt
+%=========================================================================================
+%%little larger standard setting: good setting
+\topmargin -.8cm \textheight 22.8cm \oddsidemargin 0cm
+\evensidemargin -0cm \textwidth 16.3cm
+%==================================================================================
+%% facing large setting
+%\topmargin -.8cm \textheight 22.8cm \oddsidemargin -2cm
+%\evensidemargin 2cm \textwidth 15cm
+%==================================================================================
+%%wide %% small font, fit window
+%\topmargin -3.3cm \textheight 27.5cm \oddsidemargin -2cm
+%\evensidemargin -2cm \textwidth 20cm
+%%%%%%%%%%%%%%%================================================
+%note setting, fit window
+%%wide note setting, fit window
+%\topmargin -1.6cm \textheight 23cm \oddsidemargin -0.9cm
+%\textwidth 33cm \evensidemargin -0.9cm
+%==================================================================================
+%%wide note setting, no margin
+%\topmargin -1.6cm \textheight 14.25cm \oddsidemargin -2cm
+%\textwidth 20cm \evensidemargin -1.9cm
+%=================================================================================%
+%print narrow note setting
+%\topmargin -0.5truein \textheight 9.8truein \oddsidemargin -0.7truein \evensidemargin -0.7truein \textwidth 340pt
+%=================================================================================
+%\makeatletter
+
+%\makeatletter
+
+\begin{document}  %for latex 2.09
+%\input amssym.def %
+%\input amssym      %
+
+\newcommand{\nc}{\newcommand}
+\newcommand{\delete}[1]{}
+\nc{\dfootnote}[1]{{}}          %{{}}
+\nc{\ffootnote}[1]{\dfootnote{#1}}
+%\nc{\mfootnote}[1]{{}}        % Use this to suppress footnotes
+\nc{\mfootnote}[1]{\footnote{#1}} % Use this to show footnotes
+\nc{\todo}[1]{\tred{To do:} #1}
+
+%\delete{
+\nc{\mlabel}[1]{\label{#1}}  % Use this to suppress names
+\nc{\mcite}[1]{\cite{#1}}  % Use this to suppress names
+\nc{\mref}[1]{\ref{#1}}  % Use this to suppress names
+\nc{\mbibitem}[1]{\bibitem{#1}} % Use this to show number
+%}
+
+
+\delete{
+\nc{\mlabel}[1]{\label{#1}  % Use the next two lines to show names
+{\hfill \hspace{1cm}{\bf{{\ }\hfill(#1)}}}}
+\nc{\mcite}[1]{\cite{#1}{{\bf{{\ }(#1)}}}}  % Use this lines to show names
+\nc{\mref}[1]{\ref{#1}{{\bf{{\ }(#1)}}}}  % Use this lines to show names
+\nc{\mbibitem}[1]{\bibitem[\bf #1]{#1}} % Use this to show name
+}
+
+\nc{\mkeep}[1]{\marginpar{{\bf #1}}} % Use this to show marginpar
+%\nc{\mkeep}[1]{{}}      % Use this to suppress marginpar
+
+%%%%%%%%%%%%%%%%%%%%%%%% Statements
+\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{prop}{Proposition}[section]
+\newtheorem{prop}[theorem]{Proposition}
+%\newtheorem{defn}{Definition}[section]
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{coro}[theorem]{Corollary}
+\newtheorem{prop-def}[theorem]{Proposition-Definition}
+\newtheorem{claim}{Claim}[section]
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{propprop}{Proposed Proposition}[section]
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{exam}[theorem]{Example}
+\newtheorem{assumption}{Assumption}
+\newtheorem{condition}[theorem]{Assumption}
+
+\renewcommand{\labelenumi}{{\rm(\roman{enumi})}}
+\renewcommand{\theenumi}{\roman{enumi}}
+
+\newcommand{\vectornorm}[1]{\left|\left|#1\right|\right|}
+
+\nc{\tred}[1]{\textcolor{red}{#1}}
+\nc{\tblue}[1]{\textcolor{blue}{#1}}
+\nc{\tgreen}[1]{\textcolor{green}{#1}}
+\nc{\tpurple}[1]{\textcolor{purple}{#1}}
+\nc{\btred}[1]{\textcolor{red}{\bf #1}}
+\nc{\btblue}[1]{\textcolor{blue}{\bf #1}}
+\nc{\btgreen}[1]{\textcolor{green}{\bf #1}}
+\nc{\btpurple}[1]{\textcolor{purple}{\bf #1}}
+
+\nc{\li}[1]{\textcolor{red}{Li:#1}}
+\nc{\cm}[1]{\textcolor{blue}{Chengming: #1}}
+\nc{\xiang}[1]{\textcolor{green}{Xiang: #1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%% symbols
+\nc{\adec}{\check{;}} \nc{\aop}{\alpha}
+\nc{\dftimes}{\widetilde{\otimes}} \nc{\dfl}{\succ}
+\nc{\dfr}{\prec} \nc{\dfc}{\circ} \nc{\dfb}{\bullet}
+\nc{\dft}{\star} \nc{\dfcf}{{\mathbf k}} \nc{\spr}{\cdot}
+\nc{\twopr}{\circ} \nc{\tspr}{\star} \nc{\sempr}{\ast}
+\nc{\disp}[1]{\displaystyle{#1}}
+\nc{\bin}[2]{ (_{\stackrel{\scs{#1}}{\scs{#2}}})}  %binomial coeff
+\nc{\binc}[2]{ \left (\!\! \begin{array}{c} \scs{#1}\\
+    \scs{#2} \end{array}\!\! \right )}  %binomial coeff
+\nc{\bincc}[2]{  \left ( {\scs{#1} \atop
+    \vspace{-.5cm}\scs{#2}} \right )}  %binomial coeff
+\nc{\sarray}[2]{\begin{array}{c}#1 \vspace{.1cm}\\ \hline
+    \vspace{-.35cm} \\ #2 \end{array}}
+\nc{\bs}{\bar{S}} \nc{\dcup}{\stackrel{\bullet}{\cup}}
+\nc{\dbigcup}{\stackrel{\bullet}{\bigcup}} \nc{\etree}{\big |}
+\nc{\la}{\longrightarrow} \nc{\fe}{\'{e}} \nc{\rar}{\rightarrow}
+\nc{\dar}{\downarrow} \nc{\dap}[1]{\downarrow
+\rlap{$\scriptstyle{#1}$}} \nc{\uap}[1]{\uparrow
+\rlap{$\scriptstyle{#1}$}} \nc{\defeq}{\stackrel{\rm def}{=}}
+\nc{\dis}[1]{\displaystyle{#1}} \nc{\dotcup}{\,
+\displaystyle{\bigcup^\bullet}\ } \nc{\sdotcup}{\tiny{
+\displaystyle{\bigcup^\bullet}\ }} \nc{\hcm}{\ \hat{,}\ }
+\nc{\hcirc}{\hat{\circ}} \nc{\hts}{\hat{\shpr}}
+\nc{\lts}{\stackrel{\leftarrow}{\shpr}}
+\nc{\rts}{\stackrel{\rightarrow}{\shpr}} \nc{\lleft}{[}
+\nc{\lright}{]} \nc{\uni}[1]{\tilde{#1}} \nc{\wor}[1]{\check{#1}}
+\nc{\free}[1]{\bar{#1}} \nc{\den}[1]{\check{#1}} \nc{\lrpa}{\wr}
+\nc{\curlyl}{\left \{ \begin{array}{c} {} \\ {} \end{array}
+    \right .  \!\!\!\!\!\!\!}
+\nc{\curlyr}{ \!\!\!\!\!\!\!
+    \left . \begin{array}{c} {} \\ {} \end{array}
+    \right \} }
+\nc{\leaf}{\ell}       % number of leafs
+\nc{\longmid}{\left | \begin{array}{c} {} \\ {} \end{array}
+    \right . \!\!\!\!\!\!\!}
+\nc{\ot}{\otimes} \nc{\sot}{{\scriptstyle{\ot}}}
+\nc{\otm}{\overline{\ot}} \nc{\ora}[1]{\stackrel{#1}{\rar}}
+\nc{\ola}[1]{\stackrel{#1}{\la}}%${\Bbb Z}$
+\nc{\pltree}{\calt^\pl} \nc{\epltree}{\calt^{\pl,\NC}}
+\nc{\rbpltree}{\calt^r} \nc{\scs}[1]{\scriptstyle{#1}}
+\nc{\mrm}[1]{{\rm #1}}
+\nc{\dirlim}{\displaystyle{\lim_{\longrightarrow}}\,}
+\nc{\invlim}{\displaystyle{\lim_{\longleftarrow}}\,}
+\nc{\mvp}{\vspace{0.5cm}} \nc{\svp}{\vspace{2cm}}
+\nc{\vp}{\vspace{8cm}} \nc{\proofbegin}{\noindent{\bf Proof: }}
+%\nc{\proofbegin}{\begin{proof}} % AMS command
+\nc{\proofend}{$\blacksquare$ \vspace{0.5cm}}
+%\nc{\proofend}{\end{proof}} %AMS command
+\nc{\freerbpl}{{F^{\mathrm RBPL}}}
+\nc{\sha}{{\mbox{\cyr X}}}  %used to be \cyr
+\nc{\ncsha}{{\mbox{\cyr X}^{\mathrm NC}}} \nc{\ncshao}{{\mbox{\cyr
+X}^{\mathrm NC,\,0}}} \nc{\rpr}{\circ} \nc{\apr}{\cdot}
+\nc{\dpr}{{\tiny\diamond}} \nc{\rprpm}{{\rpr}}
+\nc{\shpr}{\diamond}    %Shuffle product
+\nc{\shprm}{\overline{\diamond}}    %Shuffle product
+\nc{\shpro}{\diamond^0}    %Shuffle product
+\nc{\shprr}{\diamond^r}     %product on controlled trees
+\nc{\shpra}{\overline{\diamond}^r} \nc{\shpru}{\check{\diamond}}
+\nc{\catpr}{\diamond_l} \nc{\rcatpr}{\diamond_r}
+\nc{\lapr}{\diamond_a} \nc{\sqcupm}{\ot} \nc{\lepr}{\diamond_e}
+\nc{\vep}{\varepsilon} \nc{\labs}{\mid\!} \nc{\rabs}{\!\mid}
+\nc{\hsha}{\widehat{\sha}} \nc{\lsha}{\stackrel{\leftarrow}{\sha}}
+\nc{\rsha}{\stackrel{\rightarrow}{\sha}} \nc{\lc}{\lfloor}
+\nc{\rc}{\rfloor} \nc{\tpr}{\sqcup} \nc{\nctpr}{\vee}
+\nc{\plpr}{\star} \nc{\rbplpr}{\bar{\plpr}} \nc{\sqmon}[1]{\langle
+#1\rangle} \nc{\forest}{\calf} \nc{\ass}[1]{\alpha({#1})}
+\nc{\altx}{\Lambda_X} \nc{\vecT}{\vec{T}} \nc{\onetree}{\bullet}
+\nc{\Ao}{\check{A}} \nc{\seta}{\underline{\Ao}}
+\nc{\deltaa}{\overline{\delta}} \nc{\trho}{\tilde{\rho}}
+
+
+%%%%%%%%%%%%%%%%%%%%% roman fonts, in alphabetic order
+\nc{\mmbox}[1]{\mbox{\ #1\ }} \nc{\ann}{\mrm{ann}}
+\nc{\Aut}{\mrm{Aut}} \nc{\can}{\mrm{can}} \nc{\twoalg}{{two-sided
+algebra}\xspace} \nc{\bwt}{{mass}\xspace}
+\nc{\bop}{{modification}\xspace} \nc{\ewt}{{mass}\xspace}
+\nc{\ewts}{{masses}\xspace} \nc{\tto}{{extended}\xspace}
+\nc{\Tto}{{Extended}\xspace} \nc{\tte}{{extended}\xspace}
+\nc{\gyb}{{generalized}\xspace} \nc{\Gyb}{{Generalized}\xspace}
+\nc{\MAYBE}{{EAYBE}\xspace} \nc{\GAYBE}{{GAYBE}\xspace}
+\nc{\esym}{\vep} \nc{\colim}{\mrm{colim}} \nc{\Cont}{\mrm{Cont}}
+\nc{\rchar}{\mrm{char}} \nc{\cok}{\mrm{coker}} \nc{\dtf}{{R-{\rm
+tf}}} \nc{\dtor}{{R-{\rm tor}}}
+\renewcommand{\det}{\mrm{det}}
+\nc{\depth}{{\mrm d}} \nc{\Div}{{\mrm Div}} \nc{\End}{\mrm{End}}
+\nc{\Ext}{\mrm{Ext}} \nc{\Fil}{\mrm{Fil}} \nc{\Frob}{\mrm{Frob}}
+\nc{\Gal}{\mrm{Gal}} \nc{\GL}{\mrm{GL}} \nc{\Hom}{\mrm{Hom}}
+\nc{\hsr}{\mrm{H}} \nc{\hpol}{\mrm{HP}} \nc{\id}{\mrm{id}}
+\nc{\im}{\mrm{im}} \nc{\incl}{\mrm{incl}}
+\nc{\length}{\mrm{length}} \nc{\LR}{\mrm{LR}} \nc{\mchar}{\rm
+char} \nc{\NC}{\mrm{NC}} \nc{\mpart}{\mrm{part}}
+\nc{\pl}{\mrm{PL}} \nc{\ql}{{\QQ_\ell}} \nc{\qp}{{\QQ_p}}
+\nc{\rank}{\mrm{rank}} \nc{\rba}{\rm{RBA }} \nc{\rbas}{\rm{RBAs }}
+\nc{\rbpl}{\mrm{RBPL}} \nc{\rbw}{\rm{RBW }} \nc{\rbws}{\rm{RBWs }}
+\nc{\rcot}{\mrm{cot}} \nc{\rest}{\rm{controlled}\xspace}
+\nc{\rdef}{\mrm{def}} \nc{\rdiv}{{\rm div}} \nc{\rtf}{{\rm tf}}
+\nc{\rtor}{{\rm tor}} \nc{\res}{\mrm{res}} \nc{\SL}{\mrm{SL}}
+\nc{\Spec}{\mrm{Spec}} \nc{\tor}{\mrm{tor}} \nc{\Tr}{\mrm{Tr}}
+\nc{\mtr}{\mrm{sk}} \nc{\type}{{\bwt}\xspace}
+
+%%%%%%%%%%%%%%%%%% bold face
+\nc{\ab}{\mathbf{Ab}} \nc{\Alg}{\mathbf{Alg}}
+\nc{\Algo}{\mathbf{Alg}^0} \nc{\Bax}{\mathbf{Bax}}
+\nc{\Baxo}{\mathbf{Bax}^0} \nc{\RB}{\mathbf{RB}}
+\nc{\RBo}{\mathbf{RB}^0} \nc{\BRB}{\mathbf{RB}}
+\nc{\Dend}{\mathbf{DD}} \nc{\bfk}{{\bf k}} \nc{\bfone}{{\bf 1}}
+\nc{\base}[1]{{a_{#1}}} \nc{\detail}{\marginpar{\bf More detail}
+    \noindent{\bf Need more detail!}
+    \svp}
+\nc{\Diff}{\mathbf{Diff}} \nc{\gap}{\marginpar{\bf
+Incomplete}\noindent{\bf Incomplete!!}
+    \svp}
+\nc{\FMod}{\mathbf{FMod}} \nc{\mset}{\mathbf{MSet}}
+\nc{\rb}{\mathrm{RB}} \nc{\Int}{\mathbf{Int}}
+\nc{\Mon}{\mathbf{Mon}}
+%\nc{\remark}{\noindent{\bf Remark: }}
+\nc{\remarks}{\noindent{\bf Remarks: }}
+\nc{\OS}{\mathbf{OS}} %free operated semigroup
+\nc{\Rep}{\mathbf{Rep}} \nc{\Rings}{\mathbf{Rings}}
+\nc{\Sets}{\mathbf{Sets}} \nc{\DT}{\mathbf{DT}}
+
+%%%%%%%%%%%%%%%%%%%Bbb fonts
+\nc{\BA}{{\mathbb A}} \nc{\CC}{{\mathbb C}} \nc{\DD}{{\mathbb D}}
+\nc{\EE}{{\mathbb E}} \nc{\FF}{{\mathbb F}} \nc{\GG}{{\mathbb G}}
+\nc{\HH}{{\mathbb H}} \nc{\LL}{{\mathbb L}} \nc{\NN}{{\mathbb N}}
+\nc{\QQ}{{\mathbb Q}} \nc{\RR}{{\mathbb R}} \nc{\TT}{{\mathbb T}}
+\nc{\VV}{{\mathbb V}} \nc{\ZZ}{{\mathbb Z}}
+
+
+%%%%%%%%%%%%%%%%%%% cal fonts
+
+\nc{\calao}{{\mathcal A}} \nc{\cala}{{\mathcal A}}
+\nc{\calc}{{\mathcal C}} \nc{\cald}{{\mathcal D}}
+\nc{\cale}{{\mathcal E}} \nc{\calf}{{\mathcal F}}
+\nc{\calfr}{{{\mathcal F}^{\,r}}} \nc{\calfo}{{\mathcal F}^0}
+\nc{\calfro}{{\mathcal F}^{\,r,0}} \nc{\oF}{\overline{F}}
+\nc{\calg}{{\mathcal G}} \nc{\calh}{{\mathcal H}}
+\nc{\cali}{{\mathcal I}} \nc{\calj}{{\mathcal J}}
+\nc{\call}{{\mathcal L}} \nc{\calm}{{\mathcal M}}
+\nc{\caln}{{\mathcal N}} \nc{\calo}{{\mathcal O}}
+\nc{\calp}{{\mathcal P}} \nc{\calr}{{\mathcal R}}
+\nc{\calt}{{\mathcal T}} \nc{\caltr}{{\mathcal T}^{\,r}}
+\nc{\calu}{{\mathcal U}} \nc{\calv}{{\mathcal V}}
+\nc{\calw}{{\mathcal W}} \nc{\calx}{{\mathcal X}}
+\nc{\CA}{\mathcal{A}}
+
+
+%%%%%%%%%%%%%%%%%%  frak fonts
+\nc{\fraka}{{\mathfrak a}} \nc{\frakB}{{\mathfrak B}}
+\nc{\frakb}{{\mathfrak b}} \nc{\frakd}{{\mathfrak d}}
+\nc{\oD}{\overline{D}} \nc{\frakF}{{\mathfrak F}}
+\nc{\frakg}{{\mathfrak g}} \nc{\frakk}{{\mathfrak k}}
+\nc{\frakm}{{\mathfrak m}} \nc{\frakM}{{\mathfrak M}}
+\nc{\frakMo}{{\mathfrak M}^0} \nc{\frakp}{{\mathfrak p}}
+\nc{\frakS}{{\mathfrak S}} \nc{\frakSo}{{\mathfrak S}^0}
+\nc{\fraks}{{\mathfrak s}} \nc{\os}{\overline{\fraks}}
+\nc{\frakT}{{\mathfrak T}} \nc{\oT}{\overline{T}}
+%\nc{\frakx}{{\mathfrak x}}
+\nc{\frakX}{{\mathfrak X}} \nc{\frakXo}{{\mathfrak X}^0}
+\nc{\frakx}{{\mathbf x}}
+%\nc{\frakTxo}{{\frakTx}^0}
+\nc{\frakTx}{\frakT}      %All rooted trees, correspond to \ncsha(X)
+\nc{\frakTa}{\frakT^a}        % rooted trees for \ncsha(A)
+\nc{\frakTxo}{\frakTx^0}   % rooted trees for \ncshao(X)
+\nc{\caltao}{\calt^{a,0}}   % rooted trees for \ncshao(A)
+\nc{\ox}{\overline{\frakx}} \nc{\fraky}{{\mathfrak y}}
+\nc{\frakz}{{\mathfrak z}} \nc{\oX}{\overline{X}}
+
+\font\cyr=wncyr10
+
+\nc{\redtext}[1]{\textcolor{red}{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\hfil {\bf \Huge{Quiz 4}}\hfil
+
+
+
+
+
+\bigskip
+
+\hfil {Group 2} \hfil
+
+
+
+
+\bigskip
+
+\section{Problem 1}
+Let $p_n$ denotes the probability that the last two persons will take their own seats. If $n=3$, it is easy to see that $p_3=1/3$. In general, we also have $p_n=1/3$. This can be proved by induction. In fact, suppose that it holds up to $n$. Then for $n+1$, if the first person takes his own seat (with probability $1/(n+1)$, then the last two persons will definitely take their own seat. If the first person takes  one of the seats of the last two persons (with probability $2/(n+1)$), then the last two persons will NOT take their own seat. If the first the person takes the seat $i$, for $1<i<n$ (with probability $1/(n+1)$), then the person $i$ will essentially becomes the first person and the probability the last two persons will take their own seat is
+$p_{n+1-i}$, and by induction hyposthesis they are all $1/3$. So $p_{n+1}=\frac{1}{n+1}+\frac{1}{n+1}\sum_{i=2}^{n-1}p_{n+2-i}=\frac{1}{n+1}+\frac{1}{n+1}\frac{n-2}{3}=\frac{n+1}{3(n+1)}=1/3$. 
+
+\section{Problem 2}
+(a) Let $A_i$ be the event that at day $i$ there is no girl to guide the store. Then total way $={5 \choose 2}^5-|A_1\cap\cdot\cdot\cdot\cap A_5|$. But by inclusion exclusion principal we know $|A_1\cap\cdot\cdot\cdot\cap A_5|=\sum_{i=1}^5|A_i|-\sum_{1\leq i<j\leq 5}|A_i\cap A_j|+\cdot\cdot\cdot+|A_1\cap\cdot\cdot\cdot\cap A_5|$. But $A_i={4 \choose 2}^5$, $|A_i\cap A_j|={3 \choose 2}^5$ for $i\neq j$, $|A_i\cap A_j\cap A_k|=1$ for $i\neq j\neq k$ and $|A_{i_1}\cap\cdot\cdot\cdot\cap A_{i_4}|=|A_1\cap\cdot\cdot\cdot\cap A_5|=0$. So $|A_1\cap\cdot\cdot\cdot\cap A_5|=5*{4 \choose 2}^5-10*{3 \choose 2}^5+10*1$. Hence the total ways is ${5 \choose 2}^5-(5*{4 \choose 2}^5-10*{3 \choose 2}^5+10*1)=100000-38880+2430-10=63540$.
+
+
+(b) There are ${5 \choose 2}=10$ different pairs of girls. Total ways are ${10 \choose 5}*5!=252*120=30240$.
+
+
+(c) If both under the constraints of (a) and (b) then the answer is as follows: first we count the number of ways to form five pairs. girl 1 has ${4 \choose 2}=6$ different ways to choose two other girls to form a pair, and for each two choices, the rest has two different choices to form the rest pairs: for example, if girl 1 chooses girls 2 and 3 to form two pairs, then girls has to pick her the other partners from girls 4 and 5 (girl 2 can not pick girl 3 since in that case there is only one choice for girl 4 (or 5) to pick her partners). So the number of ways to form five pairs is $6*2=12$. For each five pairs there are $5!$ different ways to guide the store. So the total number of arrangement is $12*5!=1440$.
+
+\section{Problem 3}
+similar to 2
+
+\section{Problem 4}
+compute direct.
+
+
+\section{Problem 5}
+$W_t^n$ is a martingle iff $N=1$. 
+
+
+\section{Problem 6}
+Problem of green book: Let $V=\frac{1}{S_t}$. Applying the Ito's differential to $V$ gives 
+$$dV=(-r+\sigma^2)Vdt-\sigma VdW_t.$$ So $V$ follows a geometric distribution At last we get $V=\frac{1}{S_t}e^{-2r(T-t)+\sigma^2(T-t)}$.
+
+
+\section{Problem 7}
+no idea
+
+\section{Problem 8}
+yes
+
+\section{Problem 10}
+welch test and sharpe ratio
+
+\section{Problem 10}
+
+\begin{framed}
+\lstinputlisting{quiz4Pro10.cpp}
+\end{framed}
+
+\section{Problem 11}
+
+\begin{framed}
+\lstinputlisting{quiz4Pro11.cpp}
+\end{framed}
+
+
+\section{Problem 12}
+dynamic programming. There is a O(NlogN) algorithm using binary search + DP. 
+
+https://swiyu.wordpress.com/2012/10/15/longest-increasing-subarray/
+
+%\begin{thebibliography}{abcdsfgh}
+
+
+
+\section{Problem 13}
+back tracking
+
+\section{Problem 14}
+dynamic programming.
+
+
+%\end{thebibliography}
+
+\end{document}
+
+
+

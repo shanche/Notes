@@ -1,0 +1,17 @@
+s="The mean and variance and lala and hehe."
+k=len(s)-1
+flag=range(k)
+w_count=0
+for i in range(0,k):
+    if s[i]==' ': w_count+=1
+
+word=range(w_count+2)
+j=1
+word[w_count+1]=k
+for i in range(0,k):
+    if s[i]==' ': 
+        word[j]=i+1
+        j+=1
+print s[word[w_count]:word[w_count+1]],        
+for i in range(1,w_count+1):print s[word[w_count-i]:word[w_count-i+1]-1],
+print '.'

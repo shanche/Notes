@@ -1,0 +1,454 @@
+%
+\documentclass[12pt]{amsart}
+%\usepackage{txfonts}      %{article} was 12pt latex e
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage[dvips]{color}
+\usepackage{multicol}
+\usepackage[all]{xy}           %xypic macro for latex2.09
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{colordvi}
+\usepackage{xspace}
+\usepackage{listings}
+\usepackage{framed}
+\usepackage{lipsum}
+%\usepackage{axodraw}
+\usepackage{hyperref}
+
+\usepackage[active]{srcltx} %SRC Specials for DVI Searching
+
+
+\renewcommand\baselinestretch{1}    %was    1, 1.5 for double sp
+
+%%standard setting
+%\topmargin -0.3truein \textheight 8.4truein \oddsidemargin 0.2truein
+%\evensidemargin 0.2truein \textwidth 440pt
+%=========================================================================================
+%%little larger standard setting: good setting
+\topmargin -.8cm \textheight 22.8cm \oddsidemargin 0cm
+\evensidemargin -0cm \textwidth 16.3cm
+%==================================================================================
+%% facing large setting
+%\topmargin -.8cm \textheight 22.8cm \oddsidemargin -2cm
+%\evensidemargin 2cm \textwidth 15cm
+%==================================================================================
+%%wide %% small font, fit window
+%\topmargin -3.3cm \textheight 27.5cm \oddsidemargin -2cm
+%\evensidemargin -2cm \textwidth 20cm
+%%%%%%%%%%%%%%%================================================
+%note setting, fit window
+%%wide note setting, fit window
+%\topmargin -1.6cm \textheight 23cm \oddsidemargin -0.9cm
+%\textwidth 33cm \evensidemargin -0.9cm
+%==================================================================================
+%%wide note setting, no margin
+%\topmargin -1.6cm \textheight 14.25cm \oddsidemargin -2cm
+%\textwidth 20cm \evensidemargin -1.9cm
+%=================================================================================%
+%print narrow note setting
+%\topmargin -0.5truein \textheight 9.8truein \oddsidemargin -0.7truein \evensidemargin -0.7truein \textwidth 340pt
+%=================================================================================
+%\makeatletter
+
+%\makeatletter
+
+\begin{document}  %for latex 2.09
+%\input amssym.def %
+%\input amssym      %
+
+\newcommand{\nc}{\newcommand}
+\newcommand{\delete}[1]{}
+\nc{\dfootnote}[1]{{}}          %{{}}
+\nc{\ffootnote}[1]{\dfootnote{#1}}
+%\nc{\mfootnote}[1]{{}}        % Use this to suppress footnotes
+\nc{\mfootnote}[1]{\footnote{#1}} % Use this to show footnotes
+\nc{\todo}[1]{\tred{To do:} #1}
+
+%\delete{
+\nc{\mlabel}[1]{\label{#1}}  % Use this to suppress names
+\nc{\mcite}[1]{\cite{#1}}  % Use this to suppress names
+\nc{\mref}[1]{\ref{#1}}  % Use this to suppress names
+\nc{\mbibitem}[1]{\bibitem{#1}} % Use this to show number
+%}
+
+
+\delete{
+\nc{\mlabel}[1]{\label{#1}  % Use the next two lines to show names
+{\hfill \hspace{1cm}{\bf{{\ }\hfill(#1)}}}}
+\nc{\mcite}[1]{\cite{#1}{{\bf{{\ }(#1)}}}}  % Use this lines to show names
+\nc{\mref}[1]{\ref{#1}{{\bf{{\ }(#1)}}}}  % Use this lines to show names
+\nc{\mbibitem}[1]{\bibitem[\bf #1]{#1}} % Use this to show name
+}
+
+\nc{\mkeep}[1]{\marginpar{{\bf #1}}} % Use this to show marginpar
+%\nc{\mkeep}[1]{{}}      % Use this to suppress marginpar
+
+%%%%%%%%%%%%%%%%%%%%%%%% Statements
+\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{prop}{Proposition}[section]
+\newtheorem{prop}[theorem]{Proposition}
+%\newtheorem{defn}{Definition}[section]
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{coro}[theorem]{Corollary}
+\newtheorem{prop-def}[theorem]{Proposition-Definition}
+\newtheorem{claim}{Claim}[section]
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{propprop}{Proposed Proposition}[section]
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{exam}[theorem]{Example}
+\newtheorem{assumption}{Assumption}
+\newtheorem{condition}[theorem]{Assumption}
+
+\renewcommand{\labelenumi}{{\rm(\roman{enumi})}}
+\renewcommand{\theenumi}{\roman{enumi}}
+
+\newcommand{\vectornorm}[1]{\left|\left|#1\right|\right|}
+
+\nc{\tred}[1]{\textcolor{red}{#1}}
+\nc{\tblue}[1]{\textcolor{blue}{#1}}
+\nc{\tgreen}[1]{\textcolor{green}{#1}}
+\nc{\tpurple}[1]{\textcolor{purple}{#1}}
+\nc{\btred}[1]{\textcolor{red}{\bf #1}}
+\nc{\btblue}[1]{\textcolor{blue}{\bf #1}}
+\nc{\btgreen}[1]{\textcolor{green}{\bf #1}}
+\nc{\btpurple}[1]{\textcolor{purple}{\bf #1}}
+
+\nc{\li}[1]{\textcolor{red}{Li:#1}}
+\nc{\cm}[1]{\textcolor{blue}{Chengming: #1}}
+\nc{\xiang}[1]{\textcolor{green}{Xiang: #1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%% symbols
+\nc{\adec}{\check{;}} \nc{\aop}{\alpha}
+\nc{\dftimes}{\widetilde{\otimes}} \nc{\dfl}{\succ}
+\nc{\dfr}{\prec} \nc{\dfc}{\circ} \nc{\dfb}{\bullet}
+\nc{\dft}{\star} \nc{\dfcf}{{\mathbf k}} \nc{\spr}{\cdot}
+\nc{\twopr}{\circ} \nc{\tspr}{\star} \nc{\sempr}{\ast}
+\nc{\disp}[1]{\displaystyle{#1}}
+\nc{\bin}[2]{ (_{\stackrel{\scs{#1}}{\scs{#2}}})}  %binomial coeff
+\nc{\binc}[2]{ \left (\!\! \begin{array}{c} \scs{#1}\\
+    \scs{#2} \end{array}\!\! \right )}  %binomial coeff
+\nc{\bincc}[2]{  \left ( {\scs{#1} \atop
+    \vspace{-.5cm}\scs{#2}} \right )}  %binomial coeff
+\nc{\sarray}[2]{\begin{array}{c}#1 \vspace{.1cm}\\ \hline
+    \vspace{-.35cm} \\ #2 \end{array}}
+\nc{\bs}{\bar{S}} \nc{\dcup}{\stackrel{\bullet}{\cup}}
+\nc{\dbigcup}{\stackrel{\bullet}{\bigcup}} \nc{\etree}{\big |}
+\nc{\la}{\longrightarrow} \nc{\fe}{\'{e}} \nc{\rar}{\rightarrow}
+\nc{\dar}{\downarrow} \nc{\dap}[1]{\downarrow
+\rlap{$\scriptstyle{#1}$}} \nc{\uap}[1]{\uparrow
+\rlap{$\scriptstyle{#1}$}} \nc{\defeq}{\stackrel{\rm def}{=}}
+\nc{\dis}[1]{\displaystyle{#1}} \nc{\dotcup}{\,
+\displaystyle{\bigcup^\bullet}\ } \nc{\sdotcup}{\tiny{
+\displaystyle{\bigcup^\bullet}\ }} \nc{\hcm}{\ \hat{,}\ }
+\nc{\hcirc}{\hat{\circ}} \nc{\hts}{\hat{\shpr}}
+\nc{\lts}{\stackrel{\leftarrow}{\shpr}}
+\nc{\rts}{\stackrel{\rightarrow}{\shpr}} \nc{\lleft}{[}
+\nc{\lright}{]} \nc{\uni}[1]{\tilde{#1}} \nc{\wor}[1]{\check{#1}}
+\nc{\free}[1]{\bar{#1}} \nc{\den}[1]{\check{#1}} \nc{\lrpa}{\wr}
+\nc{\curlyl}{\left \{ \begin{array}{c} {} \\ {} \end{array}
+    \right .  \!\!\!\!\!\!\!}
+\nc{\curlyr}{ \!\!\!\!\!\!\!
+    \left . \begin{array}{c} {} \\ {} \end{array}
+    \right \} }
+\nc{\leaf}{\ell}       % number of leafs
+\nc{\longmid}{\left | \begin{array}{c} {} \\ {} \end{array}
+    \right . \!\!\!\!\!\!\!}
+\nc{\ot}{\otimes} \nc{\sot}{{\scriptstyle{\ot}}}
+\nc{\otm}{\overline{\ot}} \nc{\ora}[1]{\stackrel{#1}{\rar}}
+\nc{\ola}[1]{\stackrel{#1}{\la}}%${\Bbb Z}$
+\nc{\pltree}{\calt^\pl} \nc{\epltree}{\calt^{\pl,\NC}}
+\nc{\rbpltree}{\calt^r} \nc{\scs}[1]{\scriptstyle{#1}}
+\nc{\mrm}[1]{{\rm #1}}
+\nc{\dirlim}{\displaystyle{\lim_{\longrightarrow}}\,}
+\nc{\invlim}{\displaystyle{\lim_{\longleftarrow}}\,}
+\nc{\mvp}{\vspace{0.5cm}} \nc{\svp}{\vspace{2cm}}
+\nc{\vp}{\vspace{8cm}} \nc{\proofbegin}{\noindent{\bf Proof: }}
+%\nc{\proofbegin}{\begin{proof}} % AMS command
+\nc{\proofend}{$\blacksquare$ \vspace{0.5cm}}
+%\nc{\proofend}{\end{proof}} %AMS command
+\nc{\freerbpl}{{F^{\mathrm RBPL}}}
+\nc{\sha}{{\mbox{\cyr X}}}  %used to be \cyr
+\nc{\ncsha}{{\mbox{\cyr X}^{\mathrm NC}}} \nc{\ncshao}{{\mbox{\cyr
+X}^{\mathrm NC,\,0}}} \nc{\rpr}{\circ} \nc{\apr}{\cdot}
+\nc{\dpr}{{\tiny\diamond}} \nc{\rprpm}{{\rpr}}
+\nc{\shpr}{\diamond}    %Shuffle product
+\nc{\shprm}{\overline{\diamond}}    %Shuffle product
+\nc{\shpro}{\diamond^0}    %Shuffle product
+\nc{\shprr}{\diamond^r}     %product on controlled trees
+\nc{\shpra}{\overline{\diamond}^r} \nc{\shpru}{\check{\diamond}}
+\nc{\catpr}{\diamond_l} \nc{\rcatpr}{\diamond_r}
+\nc{\lapr}{\diamond_a} \nc{\sqcupm}{\ot} \nc{\lepr}{\diamond_e}
+\nc{\vep}{\varepsilon} \nc{\labs}{\mid\!} \nc{\rabs}{\!\mid}
+\nc{\hsha}{\widehat{\sha}} \nc{\lsha}{\stackrel{\leftarrow}{\sha}}
+\nc{\rsha}{\stackrel{\rightarrow}{\sha}} \nc{\lc}{\lfloor}
+\nc{\rc}{\rfloor} \nc{\tpr}{\sqcup} \nc{\nctpr}{\vee}
+\nc{\plpr}{\star} \nc{\rbplpr}{\bar{\plpr}} \nc{\sqmon}[1]{\langle
+#1\rangle} \nc{\forest}{\calf} \nc{\ass}[1]{\alpha({#1})}
+\nc{\altx}{\Lambda_X} \nc{\vecT}{\vec{T}} \nc{\onetree}{\bullet}
+\nc{\Ao}{\check{A}} \nc{\seta}{\underline{\Ao}}
+\nc{\deltaa}{\overline{\delta}} \nc{\trho}{\tilde{\rho}}
+
+
+%%%%%%%%%%%%%%%%%%%%% roman fonts, in alphabetic order
+\nc{\mmbox}[1]{\mbox{\ #1\ }} \nc{\ann}{\mrm{ann}}
+\nc{\Aut}{\mrm{Aut}} \nc{\can}{\mrm{can}} \nc{\twoalg}{{two-sided
+algebra}\xspace} \nc{\bwt}{{mass}\xspace}
+\nc{\bop}{{modification}\xspace} \nc{\ewt}{{mass}\xspace}
+\nc{\ewts}{{masses}\xspace} \nc{\tto}{{extended}\xspace}
+\nc{\Tto}{{Extended}\xspace} \nc{\tte}{{extended}\xspace}
+\nc{\gyb}{{generalized}\xspace} \nc{\Gyb}{{Generalized}\xspace}
+\nc{\MAYBE}{{EAYBE}\xspace} \nc{\GAYBE}{{GAYBE}\xspace}
+\nc{\esym}{\vep} \nc{\colim}{\mrm{colim}} \nc{\Cont}{\mrm{Cont}}
+\nc{\rchar}{\mrm{char}} \nc{\cok}{\mrm{coker}} \nc{\dtf}{{R-{\rm
+tf}}} \nc{\dtor}{{R-{\rm tor}}}
+\renewcommand{\det}{\mrm{det}}
+\nc{\depth}{{\mrm d}} \nc{\Div}{{\mrm Div}} \nc{\End}{\mrm{End}}
+\nc{\Ext}{\mrm{Ext}} \nc{\Fil}{\mrm{Fil}} \nc{\Frob}{\mrm{Frob}}
+\nc{\Gal}{\mrm{Gal}} \nc{\GL}{\mrm{GL}} \nc{\Hom}{\mrm{Hom}}
+\nc{\hsr}{\mrm{H}} \nc{\hpol}{\mrm{HP}} \nc{\id}{\mrm{id}}
+\nc{\im}{\mrm{im}} \nc{\incl}{\mrm{incl}}
+\nc{\length}{\mrm{length}} \nc{\LR}{\mrm{LR}} \nc{\mchar}{\rm
+char} \nc{\NC}{\mrm{NC}} \nc{\mpart}{\mrm{part}}
+\nc{\pl}{\mrm{PL}} \nc{\ql}{{\QQ_\ell}} \nc{\qp}{{\QQ_p}}
+\nc{\rank}{\mrm{rank}} \nc{\rba}{\rm{RBA }} \nc{\rbas}{\rm{RBAs }}
+\nc{\rbpl}{\mrm{RBPL}} \nc{\rbw}{\rm{RBW }} \nc{\rbws}{\rm{RBWs }}
+\nc{\rcot}{\mrm{cot}} \nc{\rest}{\rm{controlled}\xspace}
+\nc{\rdef}{\mrm{def}} \nc{\rdiv}{{\rm div}} \nc{\rtf}{{\rm tf}}
+\nc{\rtor}{{\rm tor}} \nc{\res}{\mrm{res}} \nc{\SL}{\mrm{SL}}
+\nc{\Spec}{\mrm{Spec}} \nc{\tor}{\mrm{tor}} \nc{\Tr}{\mrm{Tr}}
+\nc{\mtr}{\mrm{sk}} \nc{\type}{{\bwt}\xspace}
+
+%%%%%%%%%%%%%%%%%% bold face
+\nc{\ab}{\mathbf{Ab}} \nc{\Alg}{\mathbf{Alg}}
+\nc{\Algo}{\mathbf{Alg}^0} \nc{\Bax}{\mathbf{Bax}}
+\nc{\Baxo}{\mathbf{Bax}^0} \nc{\RB}{\mathbf{RB}}
+\nc{\RBo}{\mathbf{RB}^0} \nc{\BRB}{\mathbf{RB}}
+\nc{\Dend}{\mathbf{DD}} \nc{\bfk}{{\bf k}} \nc{\bfone}{{\bf 1}}
+\nc{\base}[1]{{a_{#1}}} \nc{\detail}{\marginpar{\bf More detail}
+    \noindent{\bf Need more detail!}
+    \svp}
+\nc{\Diff}{\mathbf{Diff}} \nc{\gap}{\marginpar{\bf
+Incomplete}\noindent{\bf Incomplete!!}
+    \svp}
+\nc{\FMod}{\mathbf{FMod}} \nc{\mset}{\mathbf{MSet}}
+\nc{\rb}{\mathrm{RB}} \nc{\Int}{\mathbf{Int}}
+\nc{\Mon}{\mathbf{Mon}}
+%\nc{\remark}{\noindent{\bf Remark: }}
+\nc{\remarks}{\noindent{\bf Remarks: }}
+\nc{\OS}{\mathbf{OS}} %free operated semigroup
+\nc{\Rep}{\mathbf{Rep}} \nc{\Rings}{\mathbf{Rings}}
+\nc{\Sets}{\mathbf{Sets}} \nc{\DT}{\mathbf{DT}}
+
+%%%%%%%%%%%%%%%%%%%Bbb fonts
+\nc{\BA}{{\mathbb A}} \nc{\CC}{{\mathbb C}} \nc{\DD}{{\mathbb D}}
+\nc{\EE}{{\mathbb E}} \nc{\FF}{{\mathbb F}} \nc{\GG}{{\mathbb G}}
+\nc{\HH}{{\mathbb H}} \nc{\LL}{{\mathbb L}} \nc{\NN}{{\mathbb N}}
+\nc{\QQ}{{\mathbb Q}} \nc{\RR}{{\mathbb R}} \nc{\TT}{{\mathbb T}}
+\nc{\VV}{{\mathbb V}} \nc{\ZZ}{{\mathbb Z}}
+
+
+%%%%%%%%%%%%%%%%%%% cal fonts
+
+\nc{\calao}{{\mathcal A}} \nc{\cala}{{\mathcal A}}
+\nc{\calc}{{\mathcal C}} \nc{\cald}{{\mathcal D}}
+\nc{\cale}{{\mathcal E}} \nc{\calf}{{\mathcal F}}
+\nc{\calfr}{{{\mathcal F}^{\,r}}} \nc{\calfo}{{\mathcal F}^0}
+\nc{\calfro}{{\mathcal F}^{\,r,0}} \nc{\oF}{\overline{F}}
+\nc{\calg}{{\mathcal G}} \nc{\calh}{{\mathcal H}}
+\nc{\cali}{{\mathcal I}} \nc{\calj}{{\mathcal J}}
+\nc{\call}{{\mathcal L}} \nc{\calm}{{\mathcal M}}
+\nc{\caln}{{\mathcal N}} \nc{\calo}{{\mathcal O}}
+\nc{\calp}{{\mathcal P}} \nc{\calr}{{\mathcal R}}
+\nc{\calt}{{\mathcal T}} \nc{\caltr}{{\mathcal T}^{\,r}}
+\nc{\calu}{{\mathcal U}} \nc{\calv}{{\mathcal V}}
+\nc{\calw}{{\mathcal W}} \nc{\calx}{{\mathcal X}}
+\nc{\CA}{\mathcal{A}}
+
+
+%%%%%%%%%%%%%%%%%%  frak fonts
+\nc{\fraka}{{\mathfrak a}} \nc{\frakB}{{\mathfrak B}}
+\nc{\frakb}{{\mathfrak b}} \nc{\frakd}{{\mathfrak d}}
+\nc{\oD}{\overline{D}} \nc{\frakF}{{\mathfrak F}}
+\nc{\frakg}{{\mathfrak g}} \nc{\frakk}{{\mathfrak k}}
+\nc{\frakm}{{\mathfrak m}} \nc{\frakM}{{\mathfrak M}}
+\nc{\frakMo}{{\mathfrak M}^0} \nc{\frakp}{{\mathfrak p}}
+\nc{\frakS}{{\mathfrak S}} \nc{\frakSo}{{\mathfrak S}^0}
+\nc{\fraks}{{\mathfrak s}} \nc{\os}{\overline{\fraks}}
+\nc{\frakT}{{\mathfrak T}} \nc{\oT}{\overline{T}}
+%\nc{\frakx}{{\mathfrak x}}
+\nc{\frakX}{{\mathfrak X}} \nc{\frakXo}{{\mathfrak X}^0}
+\nc{\frakx}{{\mathbf x}}
+%\nc{\frakTxo}{{\frakTx}^0}
+\nc{\frakTx}{\frakT}      %All rooted trees, correspond to \ncsha(X)
+\nc{\frakTa}{\frakT^a}        % rooted trees for \ncsha(A)
+\nc{\frakTxo}{\frakTx^0}   % rooted trees for \ncshao(X)
+\nc{\caltao}{\calt^{a,0}}   % rooted trees for \ncshao(A)
+\nc{\ox}{\overline{\frakx}} \nc{\fraky}{{\mathfrak y}}
+\nc{\frakz}{{\mathfrak z}} \nc{\oX}{\overline{X}}
+
+\font\cyr=wncyr10
+
+\nc{\redtext}[1]{\textcolor{red}{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\hfil {\bf \Huge{Quiz 3}}\hfil
+
+
+
+
+
+\bigskip
+
+\hfil {Group 2} \hfil
+
+
+
+
+\bigskip
+
+\section{Problem 1}
+Define indicator random variables $I_i, i=1,...16$ by $I_i=1$ if a boy sits at seats i and his neighbor in the counterclockwise is a girl or a girl sits at seats i and her neighbor in the counterclockwise is a boy. Otherwise $I_i=0$. Then expected boy-girl neighbors are $E(X)=E(\sum_{i=1}^{16}I_i)=\sum_{i=1}^{16}E(I_i)=\sum_{i=1}^{16}(\frac{9}{16}*\frac{7}{15}+\frac{7}{16}*\frac{9}{15})=16*\frac{126}{240}=8.4$.
+
+\section{Problem 2}
+Independence implies uncorrelatedness. But the other way around is not necessarily true. For example, if $X$ is standard normal, then $X$ and $X^2$ are uncorreated, but not independent. $cov(X,X^2)=EXEX^2-EX^3=0$, so they are uncorrelated. But $P(0<X<1,X^>2)=0\neq P(0<X<1)P(X^2>1)$, so they are not independent. 
+
+Reference: \url{https://en.wikipedia.org/wiki/Normally_distributed_and_uncorrelated_does_not_imply_independent}
+
+
+\section{Problem 3}
+%If you toss twice, after your first time toss, you continue if you get 1,2,3 since the expected value for one toss is $3.5$. So the payoff for tossing twice is $E(X)=1/2 * 3.5 + 1/6 * (4+5+6)= 4.25$. If you toss three times, after the first toss, you continue iff you get $1,2,3,4$. So the payoff for tossing three times is $4/6 * 4.25 + 1/6 * (5+6)=14/3$.  
+
+Solve this problem backward. If one tosesed the 3rd time, his expectation is $(1+2+3+4+5+6)/6=3.5$. 
+That means in the second toss if he gets 4,5,6 he should stop at 2nd toss. If he gets 1,2,3 he should use the 3rd chance.
+So in the 2nd toss he has 1/6 chance to get 4,5,6 separately and 1/2 chance to get 3.5. The expectation is 4.25.
+That means if in the 1st round he gets 5 or 6 he should stop otherwise continue.
+In the 1st round he has 1/6 chance to get 5 or 6 seperately and 2/3 chance to get 4.25.
+The expectation is $(5+6)/6+ 4.25*2/3 = 14/3=4.67$.
+
+The value of the game is 4.67.
+
+\section{Problem 4}
+It is $\frac{1}{n}\sum_{i=1}^n\frac{1}{i}$. See 
+$$http://math.stackexchange.com/questions/14190/average-length-of-the-longest-segment$$
+If $V_n$ denotes the largest piece: then $P(V_n>x)=P(V_1>x\; {\rm or}\; V_2>x...)$. By inclusion and exclusion principal: 
+$$P(V_n>x)=n(1-x)^{n-1}-{n \choose 2}(1-2x)^{n-1}+\cdot\cdot\cdot.$$
+
+So $E(V_n)=\int_0^\infty P(V_n>x)dx=\sum_{k=1}^n{n \choose k}(-1)^{k-1}\int_0^{1/k}(1-kx)^{n-1}dx=\sum_{k=1}^n{n \choose k}(-1)^{k-1}\frac{1}{nk}=\frac{1}{n}\sum_{k=1}^n\frac{1}{k}.$
+
+\section{Problem 5}
+The determinat of the covariance matrix for $X,Y,Z$ is $det=1-r(r-0)+r(0-r)=1-2r^2$. Since $det\geq 0$, we get $0\leq 1-2r^2$. So $-\frac{\sqrt{2}}{2}\leq r\leq \frac{\sqrt{2}}{2}$. 
+
+\section{Problem 6}
+(a) Define stopping time by ${\rm min}\{n:S_n=-1\; {\rm or}\; 99\}$. Then since $S_N$ is a martingle, $E(S_N)=p_{-1}*(-1)+(1-p_{-1})*99=0$, which implies $p_{-1}=99/100$. SInce $S_N^2-N$ is a margintale, $E(N)=E(S_N^2)=\frac{99}{100}*(-1)^2+\frac{1}{100}*(99)^2= 99$. 
+
+(b) If the drunk man hits the left locked door, he will go back, so it amount to the same problem as the (a) except here we need to replace $-1$ by $101$. So the expected number of steps he takes to go home is $E(N)=E(S_N^2)=\frac{99}{200}*101^2+\frac{101}{200}*99^2=101*99=9999$.
+
+
+\section{Problem 7}
+Ridge regression penalizes the size of the regression coefficients using $L^2$ norm.Specifically, the ridge regression estimate $\hat{\beta}$ is defined as the value of $\beta$ that minimizes$$\sum_i(y_i-x_i^T\beta)^2+\lambda\sum_i\beta_i^2.$$
+The solution of the above ridge problem is $\hat{\beta}=(x^Tx+\lambda I)^{-1}x^Ty$.
+Reference: \url{https://en.wikipedia.org/wiki/Least_squares}
+Reference: \url{https://en.wikipedia.org/wiki/Tikhonov_regularization}
+
+
+\section{Problem 8}
+Lasso regression penalizes the size of the regression coefficients using $L^1$ norm.Specifically, the lasso regression estimate $\hat{\beta}$ is defined as the value of $\beta$ that minimizes$$\sum_i(y_i-x_i^T\beta)^2+\lambda\sum_i|\beta_i|.$$
+
+Reference: \url{https://en.wikipedia.org/wiki/Least_squares}
+
+\section{Problem 9}
+Suppose that all the money in the world is less than $2^{46}$ US dollars. So after playing this game for 46 times, the money you could possibly get is always $2^{46}$ US dollars. Hence the expected payoff of this game is $46 \times 2^{46} * \sum_{n=47}^\infty \frac{1}{2^n}=46+1=47$. 
+
+
+\section{Problem 10}
+“default” means we want to use compiler-generated version of function, so don’t need to specify a body.
+Here are cases we need default constructor:
+When we want to force compiler to generate constructor.
+When all parameters have default values;
+
+
+
+
+\section{Problem 11}
+
+\begin{framed}
+\lstinputlisting{P11.cpp}
+\end{framed}
+Reference: \url{http://silviuardelean.ro/2012/06/05/few-singleton-approaches}
+
+
+\section{Problem 12}
+
+\begin{framed}
+\lstinputlisting{quiz3Pro12.cpp}
+\end{framed}
+
+
+Reference: \url{https://leetcode.com/discuss/15153/a-clean-dp-solution-which-generalizes-to-k-transactions}
+
+
+
+\section{Problem 13}
+
+\begin{framed}
+\lstinputlisting{quiz3Pro13.cpp}
+\end{framed}
+
+
+\section{Problem 14}
+Yes. It’s sometimes (not always!) a great idea. For example, suppose all Shape objects have a common algorithm for printing, but this algorithm depends on their area and they all have a potentially different way to compute their area. In this case Shape’s area() method would necessarily have to be virtual (probably pure virtual) but Shape::print() could, if we were guaranteed no derived class wanted a different algorithm for printing, be a non-virtual defined in the base class Shape.
+
+\begin{framed}
+\lstinputlisting{P14.cpp}
+\end{framed}
+ 
+ 
+
+
+Reference: \url{https://isocpp.org/wiki/faq/strange-inheritance#calling-virtuals-from-base}
+
+
+\section{Problem 15}
+
+We can generate random numbers recurrencely use
+
+\begin{eqnarray*}
+	X_{n+1} = (aX_n+b)\mod m
+\end{eqnarray*}
+where a, b and m are large integers, and $X_{n+1}$is the next in $X$ as a series of pseudo-random numbers. The maximum number of numbers the formula can produce is the modulus, m.
+
+Reference: \url{https://en.wikipedia.org/wiki/Random_number_generation}
+
+
+\section{Problem 16}
+We can flip fair coin n times to get a number below $2^n$. Then interpret this as a batch of m die flips, where m is the largest number so that $6^m<2^n$ (as already said, equality never holds here). If we get a number greater or equal to $6^m$ we must reject the value and repeat all n flips.
+
+
+Reference: \url{http://cs.stackexchange.com/questions/29204/how-to-simulate-a-die-given-a-fair-coin}
+
+
+\section{Problem 17}
+
+\begin{framed}
+\lstinputlisting{P17.cpp}
+\end{framed}
+ 
+ 
+
+Reference: \url{https://en.wikibooks.org/wiki/Puzzles/Logic_puzzles/Parachuted_Robots}
+
+
+\end{document}
+
+
+

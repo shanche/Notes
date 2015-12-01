@@ -1,0 +1,293 @@
+%  Typeset with LaTeX format
+
+\documentclass[a4paper, 11pt]{amsart}
+\usepackage{amsmath, amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage[arrow,matrix,curve,cmtip,ps]{xy}
+
+\usepackage{amsthm}
+
+%&biglatex
+%\documentclass[11pt]{article}
+
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{color}
+\usepackage{amsfonts}
+\usepackage{amscd}
+\usepackage{comment}
+\usepackage{epsfig}
+\usepackage{listings}
+%\usepackage[all]{xy}
+
+\usepackage[colorlinks=true, pdfstartview=FitV, linkcolor=red, citecolor=blue, urlcolor=green]{hyperref}
+\usepackage{tikz,etex,bbm,xspace,hyperref}
+\newcommand{\arxiv}[1]{\href{http://arxiv.org/abs/#1}{\tt arXiv:\nolinkurl{#1}}}
+
+
+%Invert commenting for showkeys:
+%\usepackage[notref]{showkey s}
+\addtolength{\hoffset}{-1.5cm}
+\addtolength{\textwidth}{3cm}
+\allowdisplaybreaks
+
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem*{theorem*}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}{Question}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem*{solution*}{Solution}
+
+
+
+%this has equations numbered within sections 1.1,1.2, ... 2.1,...
+\numberwithin{equation}{section}
+
+
+%-------------------------------------------
+%       Begin Local Macros
+%-------------------------------------------
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\ind}{\operatorname{ind}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand\mc[1]{\marginpar{\sloppy\protect\footnotesize #1}}
+\newcommand{\carl}{\operatorname{Carl}}
+\newcommand{\ci}[1]{_{ {}_{\scriptstyle #1}}}
+%\ci --- Capital index
+\newcommand{\ti}[1]{_{\scriptstyle \text{\rm #1}}}
+%\ti --text index
+\newcommand{\ut}[1]{^{\scriptstyle \text{\rm #1}}}
+%\ut -- upper text index
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\newcounter{vremennyj}
+\newcommand\cond[1]{\setcounter{vremennyj}{\theenumi}\setcounter{enumi}{#1}\labelenumi\setcounter{enumi}{\thevremennyj}}
+\renewcommand{\eqref}[1]{Equation (\ref{#1})}
+\newcommand{\argmax}{\arg\!\max}
+\newcommand{\argmin}{\arg\!\min}
+         
+%-------------------------------------------
+%       End Local Macros
+%-------------------------------------------
+
+
+
+
+
+\begin{document}
+\title[Code for Problem 14 and 15]{Code for Problem 14 and 15}
+
+\maketitle
+
+
+
+
+
+
+\section*{Problem 14}
+\begin{lstlisting}
+#include <iostream>
+#include <limits>
+#include <cmath>
+using namespace std;
+
+class expFunction {
+private:
+	double my_power(double x, int n);
+public:
+	expFunction(){};
+	~expFunction(){};
+
+	double my_exp(double x);
+};
+
+double expFunction::my_power(double x, int n) {
+	if (n == 0) {
+		return 1.0;
+	}
+
+	if (n%2 == 0) {
+		return my_power(x, n/2) * my_power(x, n/2);
+	} else {
+		return x * my_power(x, n/2) * my_power(x, n/2);
+	}
+}
+
+double expFunction::my_exp(double x)
+{
+	if (x < 0) {
+		return 1.0/my_exp(-x);
+	}
+
+	// Round up x when x is large so that
+	// e^x = 1 + x + ... + x^n/n! + O(x^n) converges faster.
+	int roundup = ceil(x);
+	double x_modified = x/roundup;
+
+	double result = 1.0;
+	double TaylorExpansionTerm = x_modified;
+	int n = 1;
+	while (TaylorExpansionTerm > numeric_limits<double>::min()) {
+		result += TaylorExpansionTerm;
+		TaylorExpansionTerm *= (x_modified/++n);
+	}
+
+	return my_power(result, roundup);
+}
+
+
+int main(int argc, char const *argv[]) {
+	expFunction soln;
+
+	double power;
+	cout << "Input the power: " << endl;
+	cin >> power;
+
+	cout << "e^" << power << " = " << soln.my_exp(power) << endl;
+
+	return 0;
+}
+\end{lstlisting}
+
+\clearpage
+
+\section*{Problem 15}
+\begin{lstlisting}
+#include <iostream>
+#include <string>
+#include <vector>
+#include <ctime>
+using namespace std;
+
+class strMatch {
+private:
+	vector<int> next;
+	void GetNext(const string& str);
+public:
+	strMatch(){};
+	~strMatch(){};
+
+	bool strStr(const string& haystack, const string& needle);
+	bool strStrKMP(const string& haystack, const string& needle);
+};
+
+// Brute force: time O(m*n), space O(1)
+bool strMatch::strStr(const string& haystack, const string& needle) {
+	if (needle.empty()) {
+		return true;
+	}
+
+	for (int i = 0; i < haystack.size(); i++) {
+		if (haystack[i] == needle[0]) {
+			bool match = true;
+			for (int j = 0; j < needle.size(); j++) {
+				if (haystack[i+j] != needle[j]) {
+					match = false;
+					break;
+				}
+			}
+
+			if (match) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+// KMP: time O(m + n), space O(n)
+void strMatch::GetNext(const string& str) {  
+    	next.push_back(-1);  
+   	int i = -1;  
+   	int j = 0;  
+    	
+   	while (j < str.size() - 1) {  
+       		//str[i] - prefix，str[j] - suffix  
+       		if (i == -1 || str[j] == str[i]) {  
+           		i++;  
+           		j++;  
+ 
+           	 	if (str[j] != str[i]) {
+            			next.push_back(i);    
+            		} else {  
+                		next.push_back(next[i]); 
+            		} 
+
+       		} else {  
+           		i = next[i];  
+       		}  
+   	}
+
+   	return;  
+}
+
+bool strMatch::strStrKMP(const string& haystack, const string& needle) {
+	GetNext(needle);
+
+	int i, j;
+    	int haystackLen = haystack.size();
+    	int needleLen = needle.size();
+
+    	for (i = 0, j = 0; i < haystackLen && j < needleLen; ) {
+		// currently, match!     
+       		if (j == -1 || haystack[i] == needle[j]) {  
+           		 i++;  
+           		 j++;  
+       		} else {  
+           		 // currently, NOT match..    
+            		 j = next[j];  
+        	}  
+    	}
+
+	if (j == needle.size()) {
+		return true;
+	} else {
+		return false;
+	}  
+}
+
+int main(int argc, char const *argv[]) {
+	strMatch soln;
+
+	string haystack;
+	cout << "Input haystack: ";
+	getline(cin, haystack);
+
+	string needle;
+	cout << "Input needle: ";
+	getline(cin, needle);
+
+	clock_t now = clock();
+	cout << "Brute force: " << soln.strStr(haystack, needle) << endl;
+	clock_t after = clock();
+	cout << "Brute force run-time: " << (after - now) / 
+	(double)(CLOCKS_PER_SEC / 1000) << " ms" << endl;
+
+	now = clock();
+	cout << "KMP: " << soln.strStrKMP(haystack, needle) << endl;
+	after = clock();
+	cout << "KMP run-time: " << (after - now) / 
+	(double)(CLOCKS_PER_SEC / 1000) << " ms" << endl;
+
+	return 0;
+}
+\end{lstlisting}
+
+\end{document}

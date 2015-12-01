@@ -1,0 +1,73 @@
+8. 
+For given n, make 1/n into binary representation, define accordingly(fair coin head 1, tail 0):
+    for ith flip of the fair coin, if large than br[i], define as tail(for biaed coin); else continue.
+    
+13.
+No. A virtual call is a mechanism to get work done given partial information. In particular, "virtual" allows us to call a function knowing only any interfaces and not the exact type of the object. To create an object you need complete information. In particular, you need to know the exact type of what you want to create. Consequently, a "call to a constructor" cannot be virtual.
+---(Bjarne Stroustup (P424 The C++ Programming Language SE))
+
+We can get the effect of a "virtual constructor" by a virtual clone() member function, or a virtual create() member function.
+(reference from https://isocpp.org/wiki/faq/virtual-functions#virtual-ctors)
+Example:
+
+class Shape {
+public:
+  virtual ~Shape() { }                 // A virtual destructor
+  virtual void draw() = 0;             // A pure virtual function
+  virtual void move() = 0;
+  // ...
+  virtual Shape* clone()  const = 0;   // Uses the copy constructor
+  virtual Shape* create() const = 0;   // Uses the default constructor
+};
+class Circle : public Shape {
+public:
+  Circle* clone()  const;   // Covariant Return Types; see below
+  Circle* create() const;   // Covariant Return Types; see below
+  // ...
+};
+Circle* Circle::clone()  const { return new Circle(*this); }
+Circle* Circle::create() const { return new Circle();      }
+
+14. 
+Yes, it is okay.
+Example:
+void Shape::print() const{
+    float a = this->area();  // area() is pure virtual
+    // ...
+}
+
+16.
+Two pass algorithm: Reverse the entire string, then reverse the letters of each individual word.
+Or in python use split() LOL
+Code:
+void reverse(char *begin, char *end){
+  char temp;
+  while (begin < end)
+  {
+    temp = *begin;
+    *begin++ = *end;
+    *end-- = temp;
+  }
+}
+void reverseWords(char *s){
+    char *word_begin = NULL;
+    char *temp = s; /* temp is for word boundry */
+ 
+    while( *temp )
+    {
+        /*This condition is to make sure that the string start with
+          valid character (not space) only*/
+        if (( word_begin == NULL ) && (*temp != ' ') )
+        {
+            word_begin=temp;
+        }
+        if(word_begin && ((*(temp+1) == ' ') || (*(temp+1) == '\0')))
+        {
+            reverse(word_begin, temp);
+            word_begin = NULL;
+        }
+        temp++;
+    } /* End of while */
+ 
+    reverse(s, temp-1);
+}

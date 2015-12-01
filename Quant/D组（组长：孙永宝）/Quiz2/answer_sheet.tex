@@ -1,0 +1,269 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{graphicx}	
+\usepackage{graphics}	
+
+\declaretheoremstyle[
+spaceabove=6pt, spacebelow=6pt,
+headfont=\normalfont\bfseries,
+notefont=\mdseries, notebraces={(}{)},
+bodyfont=\normalfont,
+postheadspace=1em,
+numberwithin=section
+]{exstyle}
+\declaretheoremstyle[
+spaceabove=6pt, spacebelow=6pt,
+headfont=\normalfont\bfseries,
+notefont=\mdseries, notebraces={(}{)},
+bodyfont=\normalfont,
+postheadspace=1em,
+headpunct={},
+qed=$\blacktriangleleft$,
+numbered=no
+]{solstyle}
+\declaretheorem[style=exstyle]{example}
+\declaretheorem[style=solstyle]{solution}
+
+
+\begin{document}
+
+\section*{Question 1}
+\begin{solution}
+Let us place each point $A$, $B$, and $C$ on the  successively on the circle. For the first placement, $A$ can be anywhere. After $A$ has been placed, there are two semicircles, divided by the line going through $A$ and the center of the circle. The placement of $B$ and $C$ can be on both sides of the circle with equal probability $1/2$, and the probability for $B$ and $C$ on the same semicircle is therefore $1/4$. \\
+\\
+Since we can place either $A$ or $B$ or $C$ at the very first, the probability of these three points on the circle is therefore $3/4$.
+\end{solution}
+
+
+\section*{Question 2}
+\begin{solution}
+Let $f(n)$ denotes the expected number of steps needed. Here $n$ is the number of steps the starting position is away from the destination. Therefore, once we place the ant on a vertex, this vertex is vertex 3 and the destination will be 0. Using the conditional expectation, we have
+\begin{align}
+f(3) &= 1 + f(2)\\
+f(2) &= 1+\frac{2}{3}f(1)+\frac{1}{3}f(3)\\
+f(1) &= 1+\frac{1}{3}f(0)+\frac{2}{3}f(2)
+\end{align}
+Obviously $f(0)=0$, solving this set of equations, yielding 
+\begin{align}
+f(3) &= 10
+\end{align}
+\end{solution}
+
+\section*{Question 3}
+\begin{solution}
+This question resembles the American option pricing. Denote $(b,r)$ denotes the number of blue and red cards left in the deck, respectively. At each $(b,r)$, we face the decision whether to sop or keep playing. If we stop, the payoff is $r-b$. If we keep going, there is $\frac{b}{b+r}$ probability that the next card will be black, and we switch to the state $(b-1,r)$, and  $\frac{r}{b+r}$ probability that the next card will be black, and we switch to the state $(b,r-1)$. We will stop if the expected payoff of drawing more cards is less than $r-b$. This gives us the system equation
+\begin{align}
+\mathbb{E}\left[f(b,r)\right] &=\max\left\{r-b,\frac{b}{b+r}\mathbb{E}\left[f(b-1,r)\right] +\frac{r}{b+r}\mathbb{E}\left[f(b,r-1)\right]  \right\}
+\end{align}
+Obviously, the boundary conditions are 
+\begin{align}
+f(0,r) &= r\quad \forall r =0,1,\ldots,26\\
+f(b,0) &= 0\quad \forall b =0,1,\ldots,26
+\end{align}
+Running the system equation (5) with the boundary conditions (6) and (7), we get the expected payoff at the beginning of the game is 
+\begin{align}
+\mathbb{E}\left[f(26,26)\right] &= \$2.62
+\end{align}
+i.e., we would pay 2.62 dollar for this game.
+\end{solution}
+
+\section*{Question 4}
+\begin{solution}
+\end{solution}
+
+\section*{Question 5}
+\begin{solution}
+Since the life of the light bulbs has memoryless property, we assume it follows the exponential distribution, and denote $X_i, i=1,2,\cdots,5$ be i.i.d. exponential distribution with $\lambda = \frac{1}{100}$ and $Y_i, i=1,2,\cdots,5$ be i.i.d. exponential distribution with $\lambda = \frac{1}{200}$.  We want to compute
+\begin{align}
+\mathbb{E}\left[\min(X_1,\ldots,X_5,Y_1,\ldots,Y_5)\right]
+\end{align}
+Denote $Z=\min(X_1,\ldots,X_5,Y_1,\ldots,Y_5)$, its pmf can be computed as
+\begin{align}
+\mathbb{P}\left(Z\leq z\right) &= 1 - \mathbb{P}\left(Z> z\right)\nonumber\\
+&= 1-\prod_{i=1}^5\mathbb{P}\left(X_i>z\right)\mathbb{P}\left(Y_i>z\right)\nonumber\\
+&=1-\left(\int_z^\infty\frac{1}{100}e^{-\frac{1}{100}t}dt\right)\left(\int_z^\infty\frac{1}{200}e^{-\frac{1}{200}t}dt\right)\nonumber\\
+&=1-\int_z^\infty e^{-\frac{3}{40}t}dt
+\end{align}
+Therefore, the pdf of $Z$ is 
+\begin{align}
+f(z) &= \frac{d}{dz} \mathbb{P}\left(Z\leq z\right)  = \frac{3}{40} e^{-\frac{3}{40}z}
+\end{align}
+The expectation can be computed as  
+\begin{align}
+\mathbb{E}\left[\min(X_1,\ldots,X_5,Y_1,\ldots,Y_5)\right] &= \int_0^\infty z f(z) dz \nonumber\\
+&= \int_0^\infty z\frac{3}{40} e^{-\frac{3}{40}z} dz \nonumber\\
+&=\frac{40}{3}
+\end{align}
+\end{solution}
+
+
+
+\section*{Question 6}
+\begin{solution}
+The total number of coin toss is 
+\begin{align}
+N &= 60\times60\times24\times365\times100 = 3.1536\times10^{10}
+\end{align}
+The probability of getting 100 heads in a row can be computed as
+ \begin{align}
+\mathbb{P}\left(\textrm{100 consecutive heads}\right)&= \mathbb{P}\left(A_1\cap A_2 \cap\cdots A_{N-100}\right)
+\end{align}
+where $A_i$ denotes the 100 consecutive sequence starts from toss $i$. Clearly
+\begin{align}
+\mathbb{P}(A_i) &= \frac{1}{2^{100}}
+\end{align}
+Therefore
+\begin{align}
+\mathbb{P}\left(\textrm{100 consecutive heads}\right)& \leq \sum_{i=1}^{N-100}\mathbb{P}(A_i) = \frac{N-100}{2^{100}} < \frac{10^{11}}{1024^{10}}< \frac{10^{11}}{10^{30}} < 0.01\%
+\end{align}
+The statement is correct.
+\end{solution}
+
+
+\section*{Question 7}
+\begin{solution}
+If we randomly cut a stick into $N$ pieces and denote the length of each piece as $X_i,i=1,\ldots,N$. Without loss of generality, we assume the length of the stick to be 1, therefore
+\begin{align}
+\sum_{i=1}^NX_i &=1
+\end{align}
+In order for  this N pieces to form a polygon, we must have
+\begin{align}
+X_i &< \frac{1}{2}\quad\forall i=1,2,\ldots,N
+\end{align}
+This reminds us of Question 1. The problem is then equivalent to that not all $N$ points are on the same semicircle of a circle with the circumference of 1. Following the same convention as of question, we calculate the probability that all $N$ points are on the same semicircle. Given a cut point $i$, we define an event $E_i$ as the next $N-1)$ point are in the clockwise semicircle and obviously $P(E_i) = \frac{1}{2^{N-1}}$. Thus the probability of all N points are on the same clockwise semicircle is 
+\begin{align}
+\mathbb{P}\left(\bigcup_{i=1}^NE_i\right) &=\bigcup_{i=1}^N\mathbb{P}\left(E_i\right) = \frac{N}{2^{N-1}}
+\end{align}
+since $E_i$ is mutually exclusive because there must be a point when we start from $j$ that has a distance to the point starting from $i$ greater than a clockwise semicircle when $i\neq j$.
+Thus the probability to be calculated is 
+\begin{align}
+\mathbb{P} &= 1- \frac{N}{2^{N-1}}
+\end{align} 
+\end{solution}
+
+
+\section*{Question 8}
+\begin{solution}
+The moving average and moving median are the same provided the distribution is not skewed. However, this is definitely not the case observed in the market. The famous market model assumes a lognormal distribution of the price. The moving median and moving average capture different aspects of the price process. More importantly, moving median is not sensitive to a sudden jump of the price price, while moving average does. If we want to have a sense of the upward and downward moving of the stock market, the moving median is better quantity to use. However, if we have a sense of mean return, the moving average is better to use. 
+\end{solution}
+
+\section*{Question 9}
+\begin{solution}
+Denote 
+\begin{align}
+X_i  &=
+\begin{cases}
+1    &\quad\textrm{if } i \textrm{ is a local maxima}    \\ 
+ 0   &\quad\textrm{otherwise}
+\end{cases}
+\end{align}
+ Obviously, if $i$ is at the end, the probability of being a local maxima is $\frac{1}{2}$, while it is $\frac{1}{3}$ if it is not a the end. Thus, the expected number of local maxima of the permutation can be calculated as  
+ \begin{align}
+\mathbb{E}\left[\sum_{i=1}^nX_i\right] &= \frac{1}{3}\times (n-2) + \frac{1}{2}\times (2)\nonumber \\
+&= \frac{n+1}{3}
+\end{align}
+\end{solution}
+
+\section*{Question 10}
+\begin{solution}
+\texttt{cout << ((n \& n-1) ==0 ? "True" : "False")}
+\end{solution}
+
+\section*{Question 11}
+\begin{solution}
+A smart pointer is an object that stores a pointer to a heap allocated object. If you use a smart pointer correctly, you no longer have to remember when to delete the new created memory. The implementation looks like this\\
+\\
+\texttt{
+template<class T>\\
+class SmartPointer \{ \\
+public:\\
+  SmartPointer(T* DumbPtr = 0); // Default initialized to NULL\\
+  SmartPointer(const SmartPoint\& rhs); //Copy constructor\\
+  $\sim$SmartPoint(); //Destructor\\  
+  \\
+  SmartPointer\& operator= (const SmartPoint\& rhs); //Assignment operator\\
+  T\& operator* () ; //Dereference operator\\
+  const T\& operator* () const; //Dereference operator\\
+  T* operator -> () const; //Address-of operator\\
+  \\
+private:\\
+  T* pointee; 
+\};
+}
+\end{solution}
+
+\section*{Question 12}
+\begin{solution}
+\end{solution}
+
+\section*{Question 13}
+\begin{solution}
+\end{solution}
+
+\section*{Question 14}
+\begin{solution}
+\end{solution}
+
+\section*{Question 15}
+\begin{solution}
+We use Taylor series to calculate the exponent. Scan over each term of the expansion, we have $O(n)$ time complexity and $O(1)$ space complexity. \\
+\texttt{
+double exp(double x, double delta)   // x is the power exponent, delta is the precision\\
+\{
+    double term = 1;  // first term\\
+    double sum = 0;  // initial value\\ 
+    for (double i = 1; term >= delta; ++i) \{\\
+        sum = sum + term;\\
+        term = term*x/i;\\
+    \}\\
+ return exp;\\
+ \}}
+\end{solution}
+
+\section*{Question 16}
+\begin{solution}
+\end{solution}
+
+\section*{Question 17}
+\begin{solution}
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
